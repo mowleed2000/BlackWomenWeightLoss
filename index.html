@@ -116,33 +116,28 @@
             <h3 class="mt-5 mb-3"
                 style="color: #fff; font-family: 'Oswald', sans-serif; font-size: 2rem; border-bottom: 2px solid #FF007F; padding-bottom: 10px;">
                 Community Stories <span class="text-pink">&</span> Transformations</h3>
-            <div class="grid-3 mt-4">
+            <div class="grid-2 mt-4">
                 <div class="story-card shadow-lg">
                     <div class="story-img-wrapper"
-                        style="background-image: url('assets/before1.png'); background-size: cover; background-position: top; height: 350px;">
+                        style="display: flex; height: 350px; overflow: hidden; position: relative;">
+                        <!-- Scaled up and shifted specifically to hide TikTok emojis at the top edge -->
+                        <div
+                            style="flex: 1; background-image: url('assets/before2.png'); background-size: cover; background-position: center 25%; transform: scale(1.35); transform-origin: top center;">
+                        </div>
+                        <div
+                            style="flex: 1; background-image: url('assets/before1.png'); background-size: cover; background-position: center 25%; border-left: 2px solid #FF007F; transform: scale(1.35); transform-origin: top center;">
+                        </div>
+
                         <div class="story-overlay">
                             <a href="javascript:void(0)"
                                 onclick="document.getElementById('modal-tiana').style.display='flex'"
-                                class="btn btn-sm btn-primary">Read Tiana's Story</a>
-                        </div>
-                    </div>
-                    <div class="story-body">
-                        <h4>"1 Year Difference 🤯"</h4>
-                        <p class="text-muted text-sm mt-1">Losing 70lbs by staying consistent with home workouts.</p>
-                    </div>
-                </div>
-                <div class="story-card shadow-lg">
-                    <div class="story-img-wrapper"
-                        style="background-image: url('assets/before2.png'); background-size: cover; background-position: top; height: 350px;">
-                        <div class="story-overlay">
-                            <a href="javascript:void(0)"
-                                onclick="document.getElementById('modal-ariana').style.display='flex'"
-                                class="btn btn-sm btn-primary">Read Ariana's Story</a>
+                                class="btn btn-sm btn-primary">Read Tiana & Ariana's Story</a>
                         </div>
                     </div>
                     <div class="story-body">
                         <h4>"From 250 to 180lbs"</h4>
-                        <p class="text-muted text-sm mt-1">How I used the Recipe Vault to drop sizes.</p>
+                        <p class="text-muted text-sm mt-1">Losing 70lbs and gaining our lives back by staying
+                            consistent.</p>
                     </div>
                 </div>
                 <!-- Submit Card -->
@@ -150,7 +145,7 @@
                     <div class="submit-icon mb-3">
                         <i class="fas fa-camera text-purple"></i>
                     </div>
-                    <h4>Share Your Journey</h4>
+                    <h4>Submit Your Transformation</h4>
                     <p class="text-muted text-sm mt-1 mb-3">Inspire thousands of other Black women by sharing your
                         progress.</p>
                     <a href="#get-featured" class="btn btn-primary">Submit Photos</a>
@@ -266,7 +261,9 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Recommended <span class="text-gradient">Programs & Gear</span></h2>
-                <p class="lead-text">Everything you need to accelerate your results.</p>
+                <p class="lead-text">Everything you need to accelerate your results. <br><strong class="text-pink">All
+                        individual purchases grant you Premium Feature Status for fast-tracked story
+                        submissions!</strong></p>
             </div>
 
             <div class="grid-3 gap-3">
@@ -274,7 +271,7 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=800&auto=format&fit=crop'); background-size: cover; background-position: center; padding: 1rem; position: relative;">
+                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('assets/course_graphic_ai_1773148513228.png'); background-size: cover; background-position: center; padding: 1rem; position: relative;">
                         <span class="badge bg-pink">Bestseller</span>
                     </div>
                     <div
@@ -282,7 +279,7 @@
                         <div>
                             <h4 class="mb-1 text-white">30 Day Kickstart Plan</h4>
                             <p class="text-sm text-muted mb-3">A simple beginner program with workouts, meal ideas and a
-                                daily progress tracker to help people start their transformation.</p>
+                                daily progress tracker.</p>
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$19</p>
@@ -296,7 +293,7 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800&auto=format&fit=crop'); background-size: cover; background-position: center; padding: 1rem;">
+                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('assets/BW2.jpg'); background-size: cover; background-position: center; padding: 1rem;">
                     </div>
                     <div
                         style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
@@ -317,14 +314,14 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop'); background-size: cover; background-position: center; padding: 1rem;">
+                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('assets/BW3.jpg'); background-size: cover; background-position: center; padding: 1rem;">
                     </div>
                     <div
                         style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <h4 class="mb-1 text-white">Healthy Recipe Guide</h4>
                             <p class="text-sm text-muted mb-3">A collection of simple, affordable meals for people
-                                trying to lose weight without complicated diets.</p>
+                                trying to lose weight.</p>
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$12</p>
@@ -338,15 +335,14 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background: linear-gradient(135deg, rgba(230,20,105,0.7), rgba(0,0,0,0.9)); padding: 1rem; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-fire text-5xl text-white opacity-50"></i>
+                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('assets/course_graphic_mindset_1773148497034.png'); background-size: cover; background-position: center; padding: 1rem;">
                     </div>
                     <div
                         style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <h4 class="mb-1 text-white">21 Day Motivation Challenge</h4>
                             <p class="text-sm text-muted mb-3">Daily challenges and motivation tasks to help people stay
-                                consistent and build better habits.</p>
+                                consistent.</p>
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$17</p>
@@ -360,15 +356,14 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background: linear-gradient(135deg, rgba(82,10,147,0.7), rgba(0,0,0,0.9)); padding: 1rem; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-chart-line text-5xl text-white opacity-50"></i>
+                        style="height: 150px; background-image: url('assets/workout2.png'); background-size: cover; background-position: top; padding: 1rem;">
                     </div>
                     <div
                         style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <h4 class="mb-1 text-white">Progress Tracker</h4>
-                            <p class="text-sm text-muted mb-3">A simple digital tracker for logging workouts, meals,
-                                water intake and weekly progress.</p>
+                            <p class="text-sm text-muted mb-3">A digital tracker for logging workouts, meals, and weekly
+                                progress.</p>
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$9</p>
@@ -382,14 +377,14 @@
                 <div class="product-card shadow-lg"
                     style="background: var(--bg-card); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
                     <div
-                        style="height: 150px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=800&auto=format&fit=crop'); background-size: cover; background-position: center; padding: 1rem;">
+                        style="height: 150px; background-image: url('assets/workout1.png'); background-size: cover; background-position: center; padding: 1rem;">
                     </div>
                     <div
                         style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
-                            <h4 class="mb-1 text-white">Transformation Starter Guide</h4>
-                            <p class="text-sm text-muted mb-3">A guide explaining how to begin a weight loss journey
-                                with simple habits, routines and mindset tips.</p>
+                            <h4 class="mb-1 text-white">Transformation Starter</h4>
+                            <p class="text-sm text-muted mb-3">A guide explaining how to begin with simple habits and
+                                mindset tips.</p>
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$15</p>
@@ -398,6 +393,34 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Product 7: Bundle -->
+                <div class="product-card shadow-lg"
+                    style="background: var(--bg-card); border-radius: 8px; border: 2px solid #FF007F; overflow: hidden; display: flex; flex-direction: column; grid-column: 1 / -1;">
+                    <div
+                        style="height: 200px; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('assets/hero.png'); background-size: cover; background-position: center; padding: 1rem; position: relative;">
+                        <span class="badge bg-purple" style="font-size: 1rem; padding: 0.5rem 1rem;">🔥 BEST VALUE
+                            BUNDLE</span>
+                    </div>
+                    <!-- Responsive flexbox for bundle row -->
+                    <div
+                        style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+                        <div style="flex: 1 1 300px; max-width: 600px;">
+                            <h4 class="mb-2 text-white" style="font-size: 1.5rem;">The Ultimate Ecosystem Access</h4>
+                            <p class="text-sm text-muted mb-0">Get full unlimited access to ALL 6 digital programs and
+                                tools above. Master your nutrition, workouts, and consistency at a massive discount.</p>
+                        </div>
+                        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
+                            <p class="text-muted" style="text-decoration: line-through; margin-bottom: 0;">Value: $87
+                            </p>
+                            <p class="text-pink font-bold text-3xl mb-2" style="font-size: 2.5rem;">$60</p>
+                            <a href="#" class="btn btn-primary px-4 py-2"
+                                style="font-size: 1.2rem; min-width: 200px;"><i class="fas fa-unlock"></i> Unlock All
+                                Access</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -501,7 +524,8 @@
             <p>Then I found BWWL. The combination of the <strong>Interactive Home Workout Guide</strong> and the
                 <strong>Digital Recipe Vault</strong> completely reprogrammed my approach. I wasn’t starving; I was
                 eating high-volume meals that tasted amazing. I wasn’t suffering through endless cardio; I was following
-                targeted, efficient home routines.</p>
+                targeted, efficient home routines.
+            </p>
             <p>In 8 months, I lost 45lbs. But more importantly, I found a version of myself I never thought existed.
                 This ecosystem gave me the exact blueprint I needed to succeed.</p>
             <button class="btn btn-primary mt-4 w-100"
