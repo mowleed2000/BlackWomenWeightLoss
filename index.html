@@ -185,37 +185,39 @@
                 <!-- Submission Form -->
                 <div class="featured-form-card shadow-lg">
                     <h3 class="mb-3">Submit Your Story</h3>
-                    <form>
+                    <form action="https://formspree.io/f/mnjgdgyb" method="POST" enctype="multipart/form-data">
                         <div class="form-group grid-2 gap-2">
-                            <input type="text" placeholder="First Name" class="form-input">
-                            <input type="text" placeholder="Instagram Handle (@)" class="form-input">
+                            <input type="text" name="first_name" placeholder="First Name" class="form-input" required>
+                            <input type="text" name="ig_handle" placeholder="Instagram Handle (@)" class="form-input">
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Address" class="form-input">
+                            <input type="email" name="email" placeholder="Email Address" class="form-input" required>
                         </div>
                         <div class="form-group grid-2 gap-2">
                             <div>
                                 <label>Before Photo</label>
-                                <input type="file" class="form-input file-input" accept="image/*">
+                                <input type="file" name="before_photo" class="form-input file-input" accept="image/*"
+                                    required>
                             </div>
                             <div>
                                 <label>After Photo</label>
-                                <input type="file" class="form-input file-input" accept="image/*">
+                                <input type="file" name="after_photo" class="form-input file-input" accept="image/*"
+                                    required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Feature Type</label>
-                            <select class="form-input">
-                                <option>Basic Feature (Free)</option>
-                                <option>Premium Feature (Priority Placement)</option>
+                            <select name="feature_type" class="form-input">
+                                <option value="Basic Feature">Basic Feature (Free)</option>
+                                <option value="Premium Feature">Premium Feature (Priority Placement)</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea rows="4"
+                            <textarea rows="4" name="story_journey"
                                 placeholder="Tell us your journey. What sparked the change? What was your routine?..."
-                                class="form-input"></textarea>
+                                class="form-input" required></textarea>
                         </div>
-                        <button class="btn btn-primary w-100 btn-lg">Submit Request</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-lg">Submit Request</button>
                     </form>
                 </div>
             </div>
@@ -281,8 +283,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$19</p>
-                            <a href="app-kickstart-30.html" target="_blank" class="btn btn-primary w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/8x2bJ0a9t4UTdUC44qffy04" target="_blank"
+                                class="btn btn-primary w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -302,8 +305,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$15</p>
-                            <a href="app-home-workout.html" target="_blank" class="btn btn-outline w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/cNi5kC0yTcnl2bU44qffy05" target="_blank"
+                                class="btn btn-outline w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -323,8 +327,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$12</p>
-                            <a href="app-recipe-guide.html" target="_blank" class="btn btn-outline w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/6oU8wO2H19b93fY8kGffy06" target="_blank"
+                                class="btn btn-outline w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -344,8 +349,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$17</p>
-                            <a href="app-21-day-challenge.html" target="_blank" class="btn btn-outline w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/14AdR8a9tgDBbMu6cyffy07" target="_blank"
+                                class="btn btn-outline w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -365,8 +371,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$9</p>
-                            <a href="app-progress-tracker.html" target="_blank" class="btn btn-outline w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/9B68wO95pcnl7we0Seffy08" target="_blank"
+                                class="btn btn-outline w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -386,8 +393,9 @@
                         </div>
                         <div>
                             <p class="text-purple font-bold text-lg mb-2">$15</p>
-                            <a href="app-starter-guide.html" target="_blank" class="btn btn-outline w-100"
-                                style="padding: 0.75rem;"><i class="fas fa-desktop"></i> Open App OS</a>
+                            <a href="https://buy.stripe.com/4gM3cu2H11IH9Em44qffy09" target="_blank"
+                                class="btn btn-outline w-100" style="padding: 0.75rem;"><i class="fas fa-unlock"></i>
+                                Unlock Access</a>
                         </div>
                     </div>
                 </div>
@@ -412,8 +420,9 @@
                             <p class="text-muted" style="text-decoration: line-through; margin-bottom: 0;">Value: $87
                             </p>
                             <p class="text-pink font-bold text-3xl mb-2" style="font-size: 2.5rem;">$60</p>
-                            <a href="#" class="btn btn-primary px-4 py-2"
-                                style="font-size: 1.2rem; min-width: 200px;"><i class="fas fa-unlock"></i> Unlock All
+                            <a href="https://buy.stripe.com/6oU7sK81lafdg2K6cyffy0a" target="_blank"
+                                class="btn btn-primary px-4 py-2" style="font-size: 1.2rem; min-width: 200px;"><i
+                                    class="fas fa-unlock"></i> Unlock All
                                 Access</a>
                         </div>
                     </div>
@@ -446,8 +455,8 @@
                     <h3 class="text-dark">7 Simple Habits That Helped Women Lose Their First 20lbs</h3>
                     <p class="text-muted text-sm mt-2 mb-3">Download our completely free PDF guide and kickstart your
                         transformation today. Enter your email to get it instantly.</p>
-                    <form class="lead-form">
-                        <input type="email" placeholder="Email Address" required
+                    <form action="https://formspree.io/f/mvzwawnk" method="POST" class="lead-form">
+                        <input type="email" name="email" placeholder="Email Address" required
                             class="form-input border-dark bg-white text-dark mb-2 w-100">
                         <button type="submit" class="btn btn-primary btn-block">Send Me The Free Guide</button>
                     </form>
