@@ -70,6 +70,7 @@ h5 {
 .text-gradient {
     background: var(--gradient-main);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -416,7 +417,7 @@ h5 {
     display: flex;
     align-items: center;
     position: relative;
-    background-image: url('assets/hero_new.png');
+    background-image: url('assets/hero_blonde.jpg');
     /* Active black woman hero image */
     background-size: cover;
     background-position: center top;
