@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Progress Tracker | BWWL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            background: #050505;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        header {
+            background: #520a93;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: -2rem auto 2rem;
+            padding: 1rem;
+        }
+
+        .tracker-grid {
+            background: #111;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #520a93;
+        }
+
+        .btn {
+            width: 100%;
+            background: #520a93;
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #6A0DAD;
+        }
+
+        .history-card {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #520a93;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-date {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .history-data span {
+            margin-right: 1rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .history-data i {
+            color: #520a93;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Digital Logbook</h1>
+        <p style="color:#d1b3ff; margin-top:5px;">Track your daily metrics and watch your average improve.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="tracker-grid">
+            <h2 style="margin-top:0;">Log Today's Data</h2>
+            <div class="form-group">
+                <label><i class="fas fa-weight"></i> Current Weight (lbs/kg)</label>
+                <input type="number" id="weight" class="form-control" placeholder="e.g. 185">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-tint"></i> Water Intake (Liters/Glasses)</label>
+                <input type="number" id="water" class="form-control" placeholder="e.g. 2.5">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-bed"></i> Sleep (Hours)</label>
+                <input type="number" id="sleep" class="form-control" placeholder="e.g. 7.5">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-running"></i> Workout Complete?</label>
+                <select id="workout" class="form-control">
+                    <option value="Yes">Yes, crushed it.</option>
+                    <option value="Rest">Rest Day.</option>
+                    <option value="No">No, skipped.</option>
+                </select>
+            </div>
+            <button class="btn" onclick="saveData()">Save Entry</button>
+        </div>
+
+        <h3>Your Log History</h3>
+        <div id="history-container">
+            <!-- Entries injected here via JS -->
+        </div>
+
+    </div>
+
+    <script>
+        function saveData() {
+            const weight = document.getElementById('weight').value;
+            const water = document.getElementById('water').value;
+            const sleep = document.getElementById('sleep').value;
+            const workout = document.getElementById('workout').value;
+
+            if (!weight || !water || !sleep) {
+                alert("Please fill in all numerical fields.");
+                return;
+            }
+
+            const today = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+            const entry = { date: today, weight, water, sleep, workout };
+
+            let history = JSON.parse(localStorage.getItem('bwwl_tracker')) || [];
+            // Prevent multiple entries per day for simplicity in UI, replace if exists
+            history = history.filter(item => item.date !== today);
+            history.unshift(entry); // Add to top
+
+            localStorage.setItem('bwwl_tracker', JSON.stringify(history));
+
+            // Clear form
+            document.getElementById('weight').value = '';
+            document.getElementById('water').value = '';
+            document.getElementById('sleep').value = '';
+
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-container');
+            const history = JSON.parse(localStorage.getItem('bwwl_tracker')) || [];
+
+            if (history.length === 0) {
+                container.innerHTML = '<p style="color:#888; text-align:center;">No entries yet. Log today to start!</p>';
+                return;
+            }
+
+            let html = '';
+            history.forEach(item => {
+                const workoutIcon = item.workout === 'Yes' ? '<i class="fas fa-check-circle text-green" style="color:#00FF00"></i>' : (item.workout === 'Rest' ? '<i class="fas fa-couch"></i>' : '<i class="fas fa-times-circle" style="color:#FF003C"></i>');
+                html += `
+                <div class="history-card">
+                    <div class="history-date">${item.date}</div>
+                    <div class="history-data">
+                        <span><i class="fas fa-weight"></i> ${item.weight}</span>
+                        <span><i class="fas fa-tint"></i> ${item.water}</span>
+                        <span><i class="fas fa-bed"></i> ${item.sleep}h</span>
+                        <span style="margin-right:0;">${workoutIcon} ${item.workout}</span>
+                    </div>
+                </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Initialize
+        renderHistory();
+    </script>
+</body>
+
+</html>

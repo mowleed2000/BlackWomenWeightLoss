@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Home Workouts | BWWL</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF007F, #6A0DAD);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header h1 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -2rem auto 2rem;
+            padding: 1.5rem;
+            background: #111;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .workout-card {
+            background: #1a1a1a;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #FF007F;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .workout-card:hover {
+            transform: translateX(5px);
+            background: #222;
+        }
+
+        .workout-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            background: #FF007F;
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .workout-details {
+            display: none;
+            color: #aaa;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            line-height: 1.6;
+        }
+
+        .timer-btn {
+            background: #6A0DAD;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .timer-btn:hover {
+            background: #5a0b99;
+        }
+
+        #timer-display {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FF007F;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+            display: none;
+            z-index: 100;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Interactive Home Workouts</h1>
+        <p>No gym. No equipment. Just effort.</p>
+    </div>
+
+    <div class="container">
+
+        <div class="workout-card" onclick="toggleDetails(this)">
+            <div class="workout-title"><span>Lower Body Focus</span> <span class="badge">3 Sets</span></div>
+            <p style="margin:0; color:#888;">Air Squats, Reverse Lunges, Glute Bridges</p>
+            <div class="workout-details">
+                <p><strong>1. Air Squats:</strong> 12-15 reps. Push through your heels.</p>
+                <p><strong>2. Reverse Lunges:</strong> 10 reps per leg.</p>
+                <p><strong>3. Glute Bridges:</strong> 15 reps. Squeeze at the top.</p>
+                <button class="timer-btn" onclick="startTimer(esp, 60, this)"><i class="fas fa-stopwatch"></i> Start 60s
+                    Rest Timer</button>
+            </div>
+        </div>
+
+        <div class="workout-card" onclick="toggleDetails(this)">
+            <div class="workout-title"><span>Upper Body & Core</span> <span class="badge">3 Sets</span></div>
+            <p style="margin:0; color:#888;">Pushups, Planks, Bicycle Crunches</p>
+            <div class="workout-details">
+                <p><strong>1. Incline / Knee Pushups:</strong> 8-12 reps.</p>
+                <p><strong>2. Plank Holds:</strong> 30-45 seconds.</p>
+                <p><strong>3. Bicycle Crunches:</strong> 15-20 reps total.</p>
+                <button class="timer-btn" onclick="startTimer(event, 60, this)"><i class="fas fa-stopwatch"></i> Start
+                    60s Rest Timer</button>
+            </div>
+        </div>
+
+        <div class="workout-card" onclick="toggleDetails(this)">
+            <div class="workout-title"><span>The Cardio Finisher</span> <span class="badge">Burn</span></div>
+            <p style="margin:0; color:#888;">Jumping Jacks, High Knees, Burpees (Optional)</p>
+            <div class="workout-details">
+                <p><strong>Follow along:</strong> Do each movement for 40 seconds, rest for 20 seconds. Repeat 3 times.
+                </p>
+                <button class="timer-btn" onclick="startTimer(event, 40, this)"><i class="fas fa-play"></i> Start 40s
+                    Work Timer</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="timer-display">
+        <i class="fas fa-clock"></i> <span id="time">00:00</span>
+    </div>
+
+    <script>
+        function toggleDetails(card) {
+            const details = card.querySelector('.workout-details');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                card.style.borderLeftColor = '#FF007F';
+            } else {
+                details.style.display = 'block';
+                card.style.borderLeftColor = '#6A0DAD';
+            }
+        }
+
+        let currentInterval;
+        function startTimer(e, seconds, btn) {
+            e.stopPropagation(); // prevent card toggle
+
+            clearInterval(currentInterval);
+            const display = document.getElementById('timer-display');
+            const timeSpan = document.getElementById('time');
+            display.style.display = 'flex';
+
+            let timeLeft = seconds;
+
+            function update() {
+                const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const s = (timeLeft % 60).toString().padStart(2, '0');
+                timeSpan.innerText = `${m}:${s}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(currentInterval);
+                    timeSpan.innerText = "DONE!";
+                    setTimeout(() => display.style.display = 'none', 3000);
+                }
+                timeLeft--;
+            }
+            update();
+            currentInterval = setInterval(update, 1000);
+
+            // Allow stopping by clicking the timer
+            display.onclick = () => {
+                clearInterval(currentInterval);
+                display.style.display = 'none';
+            };
+        }
+    </script>
+</body>
+
+</html>

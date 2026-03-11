@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Healthy Recipes | BWWL</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #050505;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.8), rgba(106, 13, 173, 0.8)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid #FF007F;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #222;
+            border: 1px solid #444;
+            color: #ddd;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #FF007F;
+            border-color: #FF007F;
+            color: #000;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recipe-card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.2);
+        }
+
+        .recipe-header {
+            padding: 1.5rem;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .recipe-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #fff;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #FF007F;
+            font-weight: bold;
+        }
+
+        .recipe-body {
+            padding: 1.5rem;
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .recipe-body ul {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>The Digital Recipe Vault</h1>
+        <p>Simple, affordable meals for fat loss.</p>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterData('all', this)">All Meals</button>
+            <button class="filter-btn" onclick="filterData('breakfast', this)">Breakfast</button>
+            <button class="filter-btn" onclick="filterData('lunch', this)">Lunch</button>
+            <button class="filter-btn" onclick="filterData('dinner', this)">Dinner</button>
+        </div>
+
+        <div class="recipe-grid" id="recipes">
+            <!-- Breakfast -->
+            <div class="recipe-card" data-category="breakfast">
+                <div class="recipe-header">
+                    <h3>The Power Scramble</h3>
+                    <div class="recipe-meta"><span><i class="fas fa-clock"></i> 5 mins</span> <span><i
+                                class="fas fa-fire"></i> High Protein</span></div>
+                </div>
+                <div class="recipe-body">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>2 whole eggs + 2 egg whites</li>
+                        <li>Handful of spinach</li>
+                        <li>1/4 diced bell pepper</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Sauté peppers until soft. Add spinach. Whisk eggs and pour into
+                        pan. Scramble. Serve with avocado.</p>
+                </div>
+            </div>
+
+            <div class="recipe-card" data-category="breakfast">
+                <div class="recipe-header">
+                    <h3>Overnight Protein Oats</h3>
+                    <div class="recipe-meta"><span><i class="fas fa-clock"></i> 2 mins (Prep)</span> <span><i
+                                class="fas fa-stopwatch"></i> Zero Cooking</span></div>
+                </div>
+                <div class="recipe-body">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>1/2 cup rolled oats</li>
+                        <li>1/2 cup almond milk</li>
+                        <li>1 scoop vanilla protein powder</li>
+                        <li>1 tsp chia seeds</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Mix everything in a jar, seal, and leave in fridge overnight. Top
+                        with berries in the morning.</p>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="recipe-card" data-category="lunch">
+                <div class="recipe-header">
+                    <h3>Turkey Salad Bowl</h3>
+                    <div class="recipe-meta"><span><i class="fas fa-clock"></i> 5 mins</span> <span><i
+                                class="fab fa-envira"></i> Volume Eating</span></div>
+                </div>
+                <div class="recipe-body">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>Mixed greens (spinach, kale)</li>
+                        <li>4 oz cooked turkey breast</li>
+                        <li>Cherry tomatoes & cucumbers</li>
+                        <li>1 boiled egg</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Toss all ingredients into a massive bowl. Top with 1 tbsp balsamic
+                        vinaigrette.</p>
+                </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="recipe-card" data-category="dinner">
+                <div class="recipe-header">
+                    <h3>Lemon Herb Baked Chicken</h3>
+                    <div class="recipe-meta"><span><i class="fas fa-clock"></i> 30 mins</span> <span><i
+                                class="fas fa-utensils"></i> Comforting</span></div>
+                </div>
+                <div class="recipe-body">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>1 chicken breast</li>
+                        <li>1 medium sweet potato</li>
+                        <li>1/2 tbsp olive oil</li>
+                        <li>Lemon juice, oregano, salt</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Bake diced sweet potato at 400°F for 25 mins. Add seasoned chicken
+                        for the last 15 mins.</p>
+                </div>
+            </div>
+
+            <div class="recipe-card" data-category="dinner">
+                <div class="recipe-header">
+                    <h3>Quick Shrimp Stir-Fry</h3>
+                    <div class="recipe-meta"><span><i class="fas fa-clock"></i> 15 mins</span> <span><i
+                                class="fas fa-fire"></i> Metabolism</span></div>
+                </div>
+                <div class="recipe-body">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                        <li>6 oz raw shrimp</li>
+                        <li>2 cups frozen mixed veggies</li>
+                        <li>1 tbsp low-sodium soy sauce</li>
+                        <li>1/2 tsp sesame oil</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Cook veggies until soft. Add shrimp until pink (3-4 mins). Toss
+                        with soy sauce and sesame oil.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterData(category, btn) {
+            // Update buttons
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter cards
+            const cards = document.querySelectorAll('.recipe-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
