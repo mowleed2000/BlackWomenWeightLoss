@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Home Workouts | BWWL</title>
+    <title>Interactive Workout Guide | BWWL</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
@@ -16,184 +16,633 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-            background: #050505;
+            background: #0a0a0a;
             color: #fff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        .header {
-            background: linear-gradient(135deg, #FF007F, #6A0DAD);
-            padding: 3rem 1.5rem;
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 2rem;
             text-align: center;
-            border-radius: 0 0 20px 20px;
+            border-bottom: 2px solid #FF007F;
         }
 
-        .header h1 {
+        .hero h1 {
             font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
             margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 1rem auto;
+            font-size: 1.15rem;
+            color: #ccc;
         }
 
         .container {
-            max-width: 800px;
-            margin: -2rem auto 2rem;
-            padding: 1.5rem;
-            background: #111;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+            padding: 2rem 1rem;
             position: relative;
         }
 
-        .workout-card {
-            background: #1a1a1a;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #FF007F;
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
             padding: 1.5rem;
-            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar h3 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF007F;
+            margin-top: 0;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .nav-link {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #222;
+            font-weight: 600;
             transition: 0.3s;
         }
 
-        .workout-card:hover {
-            transform: translateX(5px);
-            background: #222;
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff;
+            border-left: 3px solid #6A0DAD;
+            padding-left: 10px;
+            background: rgba(106, 13, 173, 0.1);
         }
 
-        .workout-title {
-            font-size: 1.25rem;
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+            color: #FF007F;
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+        }
+
+        .section-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            border-bottom: 2px solid #FF007F;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            padding-top: 2rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* Exercise Cards */
+        .exercise-card {
+            background: #151515;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media(min-width: 768px) {
+            .exercise-card {
+                flex-direction: row;
+            }
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.1);
+            border-color: #FF007F;
+        }
+
+        .exercise-img {
+            width: 100%;
+            height: 250px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @media(min-width: 768px) {
+            .exercise-img {
+                width: 35%;
+                height: auto;
+            }
+        }
+
+        .exercise-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .exercise-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .exercise-info h4 {
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .badge-equip {
+            font-size: 0.75rem;
+            background: #333;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+
+        .form-guide {
+            background: #111;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #6A0DAD;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        .variations {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .var-box {
+            background: rgba(255, 0, 127, 0.05);
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            padding: 0.75rem;
+            border-radius: 6px;
+            flex-grow: 1;
+            min-width: 200px;
+        }
+
+        .var-box h5 {
+            margin: 0 0 0.5rem;
+            color: #FF007F;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .var-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* Structured Workouts */
+        .workout-plan {
+            background: linear-gradient(135deg, #18000b, #111);
+            border: 1px solid #FF007F;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .wp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wp-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .wp-badge {
+            background: #FF007F;
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .wp-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media(min-width: 600px) {
+            .wp-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .wp-item {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #6A0DAD;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .badge {
-            background: #FF007F;
-            color: #000;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
+        .wp-item span {
             font-weight: bold;
-            text-transform: uppercase;
+            font-size: 1.1rem;
         }
 
-        .workout-details {
-            display: none;
-            color: #aaa;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #333;
-            line-height: 1.6;
+        .wp-item div {
+            font-size: 0.9rem;
+            color: #FF007F;
+            font-weight: 600;
         }
 
+        /* Timer UI */
         .timer-btn {
-            background: #6A0DAD;
+            background: #FF007F;
             color: #fff;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 1rem 2rem;
+            border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            margin-top: 1rem;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: 0.3s;
+            font-size: 1.1rem;
         }
 
         .timer-btn:hover {
-            background: #5a0b99;
+            background: #e0006f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
         }
 
         #timer-display {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
-            background: #FF007F;
-            color: #000;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #FF007F;
+            color: #fff;
             padding: 1rem 2rem;
             border-radius: 30px;
             font-weight: bold;
             font-family: monospace;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.6);
             display: none;
-            z-index: 100;
+            z-index: 1000;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>Interactive Home Workouts</h1>
-        <p>No gym. No equipment. Just effort.</p>
+    <div class="hero">
+        <h1>Interactive Home Workout Guide</h1>
+        <p>Premium exercise library and structured routines designed for maximum fat loss, strength building, and
+            longevity. No gym required.</p>
     </div>
 
     <div class="container">
+        <!-- Sticky Navigation -->
+        <div class="sidebar">
+            <h3>Movement Directory</h3>
+            <a href="#lower" class="nav-link"><i class="fas fa-running"></i> Lower Body</a>
+            <a href="#upper" class="nav-link"><i class="fas fa-dumbbell"></i> Upper Body</a>
+            <a href="#core" class="nav-link"><i class="fas fa-child"></i> Core Validation</a>
+            <a href="#fullbody" class="nav-link"><i class="fas fa-fire"></i> Full Body Burst</a>
 
-        <div class="workout-card" onclick="toggleDetails(this)">
-            <div class="workout-title"><span>Lower Body Focus</span> <span class="badge">3 Sets</span></div>
-            <p style="margin:0; color:#888;">Air Squats, Reverse Lunges, Glute Bridges</p>
-            <div class="workout-details">
-                <p><strong>1. Air Squats:</strong> 12-15 reps. Push through your heels.</p>
-                <p><strong>2. Reverse Lunges:</strong> 10 reps per leg.</p>
-                <p><strong>3. Glute Bridges:</strong> 15 reps. Squeeze at the top.</p>
-                <button class="timer-btn" onclick="startTimer(esp, 60, this)"><i class="fas fa-stopwatch"></i> Start 60s
-                    Rest Timer</button>
-            </div>
+            <h3 style="margin-top:2rem;">The Routines</h3>
+            <a href="#routine-beginner" class="nav-link"><i class="fas fa-battery-quarter"></i> The Beginner Base</a>
+            <a href="#routine-inter" class="nav-link"><i class="fas fa-battery-half"></i> The Sculptor</a>
+            <a href="#routine-burn" class="nav-link"><i class="fas fa-battery-full"></i> 20-Min Fat Burner</a>
         </div>
 
-        <div class="workout-card" onclick="toggleDetails(this)">
-            <div class="workout-title"><span>Upper Body & Core</span> <span class="badge">3 Sets</span></div>
-            <p style="margin:0; color:#888;">Pushups, Planks, Bicycle Crunches</p>
-            <div class="workout-details">
-                <p><strong>1. Incline / Knee Pushups:</strong> 8-12 reps.</p>
-                <p><strong>2. Plank Holds:</strong> 30-45 seconds.</p>
-                <p><strong>3. Bicycle Crunches:</strong> 15-20 reps total.</p>
-                <button class="timer-btn" onclick="startTimer(event, 60, this)"><i class="fas fa-stopwatch"></i> Start
-                    60s Rest Timer</button>
-            </div>
-        </div>
+        <div class="content">
 
-        <div class="workout-card" onclick="toggleDetails(this)">
-            <div class="workout-title"><span>The Cardio Finisher</span> <span class="badge">Burn</span></div>
-            <p style="margin:0; color:#888;">Jumping Jacks, High Knees, Burpees (Optional)</p>
-            <div class="workout-details">
-                <p><strong>Follow along:</strong> Do each movement for 40 seconds, rest for 20 seconds. Repeat 3 times.
-                </p>
-                <button class="timer-btn" onclick="startTimer(event, 40, this)"><i class="fas fa-play"></i> Start 40s
-                    Work Timer</button>
-            </div>
-        </div>
+            <!-- SECTION 1: LOWER BODY -->
+            <h2 id="lower" class="section-header">Lower Body Mechanics</h2>
 
+            <div class="exercise-card">
+                <div class="exercise-img">
+                    <img src="assets/squat_form_guide.png" alt="Perfect Bodyweight Squat Form">
+                </div>
+                <div class="exercise-info">
+                    <h4>The Bodyweight Squat <span class="badge-equip">No Equip</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Stand shoulder-width apart. Hinge your hips back as if sitting in
+                        a chair. Keep chest tall, back straight. Drive through your heels to return to standing while
+                        squeezing glutes. Do not let knees cave inwards.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Box Squats: Squat down until your glutes touch a chair or couch, then stand back up.
+                                Reduces balance requirement.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Jump Squats: Explode upward from the bottom of the squat until feet leave the floor.
+                                Absorb impact silently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <div class="exercise-info" style="border-right: 1px solid #2a2a2a;">
+                    <h4>Reverse Lunges <span class="badge-equip">No Equip</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Stand tall. Step one foot backward and lower your hips until both
+                        knees are bent at a 90-degree angle. The back knee should hover just above the floor. Push off
+                        the back foot to return to the start.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Hold onto a wall, chair, or doorway for balance while dropping the knee.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Bulgarian Split Squats: Elevate the rear foot on a chair or couch. Massively increases
+                                glute isolation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: UPPER BODY -->
+            <h2 id="upper" class="section-header">Upper Body Strength</h2>
+
+            <div class="exercise-card">
+                <div class="exercise-img">
+                    <img src="assets/pushup_form_guide.png" alt="Perfect Pushup Form">
+                </div>
+                <div class="exercise-info">
+                    <h4>The Strict Pushup <span class="badge-equip">No Equip</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Hands directly under shoulders. Keep your body in a perfectly
+                        straight line from head to heels. Lower your chest until it is an inch from the floor, elbows
+                        tucked back at a 45-degree angle (not flaring out). Push the floor violently away.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Incline Pushups: Place hands on a sturdy chair, counter, or wall. Do not drop to elbows;
+                                maintain the straight body line.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Decline Pushups: Elevate your feet on a chair. Shifts weight forward, increasing chest
+                                and delt load.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <div class="exercise-info" style="border-right: 1px solid #2a2a2a;">
+                    <h4>Tricep Dips <span class="badge-equip">Chair / Couch</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Sit on the edge of a sturdy chair. Place hands next to hips,
+                        fingers pointing forward. Slide hips off the chair. Bend elbows to lower your body until upper
+                        arms are parallel to the floor. Push back up forcefully.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Keep feet flat on the floor, knees bent at 90 degrees to assist with the push.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Straighten your legs completely, resting only your heels on the floor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: CORE -->
+            <h2 id="core" class="section-header">Core Validation</h2>
+
+            <div class="exercise-card">
+                <div class="exercise-img">
+                    <img src="assets/plank_form_guide.png" alt="Perfect Plank Form">
+                </div>
+                <div class="exercise-info">
+                    <h4>The Forearm Plank <span class="badge-equip">No Equip</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Elbows directly beneath shoulders. Body perfectly straight from
+                        head to heels. Squeeze your glutes violently and pull your belly button up towards your spine.
+                        Do not let your lower back sag.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Knee Plank: Drop your knees to the floor but maintain the straight line from head to
+                                knees.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Plank Up-Downs: Push up from forearms to hands, then lower back to forearms, minimizing
+                                hip sway.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <div class="exercise-info" style="border-right: 1px solid #2a2a2a;">
+                    <h4>Bicycle Crunches <span class="badge-equip">No Equip</span></h4>
+                    <div class="form-guide">
+                        <strong>Correct Form:</strong> Lie flat. Press lower back firmly into the floor. Bring knees to
+                        tabletop. Place hands behind head lightly. Extend right leg while bringing right elbow to left
+                        knee. Switch sides in a controlled, pedaling motion.
+                    </div>
+                    <div class="variations">
+                        <div class="var-box">
+                            <h5>🔰 Beginner Edit</h5>
+                            <p>Heel Taps: Keep knees bent, tap one heel to the floor at a time while keeping the lower
+                                back pressed down.</p>
+                        </div>
+                        <div class="var-box">
+                            <h5>⚡ Advanced Edit</h5>
+                            <p>Hold for 2 seconds on every 'twist' to force maximum oblique contraction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE ROUTINES -->
+            <h2 id="routine-beginner" class="section-header" style="margin-top: 5rem;">Premium Routines</h2>
+
+            <!-- Workout 1 -->
+            <div class="workout-plan">
+                <div class="wp-header">
+                    <h3>1. The Beginner Base</h3>
+                    <span class="wp-badge">Full Body • 15 Mins</span>
+                </div>
+                <p style="color:#ccc; margin-top:0;">Focus strictly on mastering form. Move deliberately. Rest exactly
+                    60 seconds between rounds (sets).</p>
+                <div class="wp-grid">
+                    <div class="wp-item"><span>Box/Chair Squats</span>
+                        <div>12 Reps</div>
+                    </div>
+                    <div class="wp-item"><span>Incline Pushups</span>
+                        <div>10 Reps</div>
+                    </div>
+                    <div class="wp-item"><span>Reverse Lunges</span>
+                        <div>8 Reps / Leg</div>
+                    </div>
+                    <div class="wp-item"><span>Knee Plank</span>
+                        <div>30 Secs</div>
+                    </div>
+                </div>
+                <button class="timer-btn" onclick="startTimer(60)"><i class="fas fa-stopwatch"></i> Complete Round:
+                    Start 60s Rest</button>
+            </div>
+
+            <!-- Workout 2 -->
+            <div id="routine-inter" class="workout-plan">
+                <div class="wp-header">
+                    <h3>2. The Sculptor</h3>
+                    <span class="wp-badge">Hypertrophy • 25 Mins</span>
+                </div>
+                <p style="color:#ccc; margin-top:0;">Intermediate strength building. Complete 4 total rounds. Muscular
+                    burn is the goal.</p>
+                <div class="wp-grid">
+                    <div class="wp-item"><span>Standard Squats</span>
+                        <div>15 Reps</div>
+                    </div>
+                    <div class="wp-item"><span>Standard Pushups</span>
+                        <div>Max Reps</div>
+                    </div>
+                    <div class="wp-item"><span>Bulgarian Split Squats</span>
+                        <div>10 Reps / Leg</div>
+                    </div>
+                    <div class="wp-item"><span>Tricep Dips</span>
+                        <div>15 Reps</div>
+                    </div>
+                    <div class="wp-item"><span>Forearm Plank</span>
+                        <div>45 Secs</div>
+                    </div>
+                </div>
+                <button class="timer-btn" onclick="startTimer(45)"><i class="fas fa-stopwatch"></i> Complete Round:
+                    Start 45s Rest</button>
+            </div>
+
+            <!-- Workout 3 -->
+            <div id="routine-burn" class="workout-plan">
+                <div class="wp-header">
+                    <h3>3. 20-Min Fat Burner</h3>
+                    <span class="wp-badge">HIIT • 20 Mins</span>
+                </div>
+                <p style="color:#ccc; margin-top:0;">High Intensity Circuit. Perform each movement for 40 seconds, rest
+                    for 20 seconds. Repeat 4 times.</p>
+                <div class="wp-grid">
+                    <div class="wp-item"><span>Jump Squats</span>
+                        <div>40s Work / 20s Rest</div>
+                    </div>
+                    <div class="wp-item"><span>Pushups</span>
+                        <div>40s Work / 20s Rest</div>
+                    </div>
+                    <div class="wp-item"><span>Bicycle Crunches</span>
+                        <div>40s Work / 20s Rest</div>
+                    </div>
+                    <div class="wp-item"><span>Burpees / Jumping Jacks</span>
+                        <div>40s Work / 20s Rest</div>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="timer-btn" style="background:#520a93;" onclick="startTimer(40)"><i
+                            class="fas fa-play"></i> Start 40s Work</button>
+                    <button class="timer-btn" onclick="startTimer(20)"><i class="fas fa-pause"></i> Start 20s
+                        Rest</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div id="timer-display">
-        <i class="fas fa-clock"></i> <span id="time">00:00</span>
+    <div id="timer-display" onclick="stopTimer()">
+        <i class="fas fa-clock" style="color:#FF007F;"></i> <span id="time">00:00</span> <i class="fas fa-times"
+            style="font-size:1rem; opacity:0.5; margin-left:10px;"></i>
     </div>
 
     <script>
-        function toggleDetails(card) {
-            const details = card.querySelector('.workout-details');
-            if (details.style.display === 'block') {
-                details.style.display = 'none';
-                card.style.borderLeftColor = '#FF007F';
-            } else {
-                details.style.display = 'block';
-                card.style.borderLeftColor = '#6A0DAD';
-            }
-        }
+        // Smooth scrolling active links
+        const sections = document.querySelectorAll('.section-header');
+        const navLinks = document.querySelectorAll('.nav-link');
 
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smart Timer logic
         let currentInterval;
-        function startTimer(e, seconds, btn) {
-            e.stopPropagation(); // prevent card toggle
-
+        function startTimer(seconds) {
             clearInterval(currentInterval);
             const display = document.getElementById('timer-display');
             const timeSpan = document.getElementById('time');
@@ -208,19 +657,22 @@
 
                 if (timeLeft <= 0) {
                     clearInterval(currentInterval);
-                    timeSpan.innerText = "DONE!";
-                    setTimeout(() => display.style.display = 'none', 3000);
+                    timeSpan.innerText = "BEEP!";
+                    display.style.borderColor = "#00FF00";
+                    setTimeout(() => {
+                        display.style.display = 'none';
+                        display.style.borderColor = "#FF007F";
+                    }, 4000);
                 }
                 timeLeft--;
             }
             update();
             currentInterval = setInterval(update, 1000);
+        }
 
-            // Allow stopping by clicking the timer
-            display.onclick = () => {
-                clearInterval(currentInterval);
-                display.style.display = 'none';
-            };
+        function stopTimer() {
+            clearInterval(currentInterval);
+            document.getElementById('timer-display').style.display = 'none';
         }
     </script>
 </body>

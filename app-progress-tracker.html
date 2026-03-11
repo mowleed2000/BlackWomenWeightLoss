@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Progress Tracker | BWWL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Progress Logbook OS | BWWL</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -14,34 +16,68 @@
             background: #050505;
             color: #fff;
             font-family: 'Inter', sans-serif;
+            padding-bottom: 3rem;
         }
 
-        header {
-            background: #520a93;
-            padding: 2rem 1rem;
+        .hero {
+            background: linear-gradient(135deg, rgba(106, 13, 173, 0.9), rgba(0, 0, 0, 0.9));
+            padding: 4rem 1rem 3rem;
             text-align: center;
-            border-radius: 0 0 15px 15px;
+            border-radius: 0 0 30px 30px;
+            position: relative;
         }
 
-        header h1 {
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
             margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: -1px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-size: 1.1rem;
+            color: #ddd;
         }
 
         .container {
-            max-width: 600px;
-            margin: -2rem auto 2rem;
-            padding: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
-        .tracker-grid {
+        @media(min-width: 768px) {
+            .container {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+
+        /* The Input Form */
+        .log-panel {
             background: #111;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
             border: 1px solid #333;
-            margin-bottom: 2rem;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .log-panel h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: #6A0DAD;
+            border-bottom: 1px solid #222;
+            padding-bottom: 1rem;
         }
 
         .form-group {
@@ -49,11 +85,19 @@
         }
 
         .form-group label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 0.5rem;
             color: #ccc;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group label i {
+            color: #6A0DAD;
+            width: 20px;
+            text-align: center;
         }
 
         .form-control {
@@ -62,153 +106,437 @@
             background: #1a1a1a;
             border: 1px solid #444;
             color: #fff;
-            padding: 0.8rem;
-            border-radius: 6px;
-            font-size: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            transition: 0.2s;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: #520a93;
+            border-color: #FF007F;
+            background: #222;
         }
 
-        .btn {
+        .mood-selector {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        .mood-btn {
+            flex-grow: 1;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #aaa;
+            padding: 0.8rem 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .mood-btn.active {
+            background: rgba(106, 13, 173, 0.2);
+            border-color: #6A0DAD;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .btn-submit {
             width: 100%;
-            background: #520a93;
-            border: none;
+            background: linear-gradient(90deg, #6A0DAD, #FF007F);
             color: white;
-            padding: 1rem;
-            border-radius: 8px;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 30px;
             font-weight: bold;
             font-size: 1.1rem;
             cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(106, 13, 173, 0.4);
+        }
+
+        /* The History Feed */
+        .history-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .history-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin: 0 0 1rem;
+            color: #fff;
+        }
+
+        .entry-card {
+            background: #151515;
+            border-left: 4px solid #6A0DAD;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: slideIn 0.4s ease;
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #6A0DAD;
+        .entry-card:hover {
+            transform: translateX(5px);
+            border-color: #FF007F;
         }
 
-        .history-card {
-            background: #1a1a1a;
-            padding: 1rem;
-            border-radius: 8px;
+        .entry-date {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #fff;
             margin-bottom: 1rem;
-            border-left: 4px solid #520a93;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .history-date {
+        .entry-mood {
+            font-size: 1.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #222;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        .metric i {
+            color: #FF007F;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .metric.success i {
+            color: #00FF00;
+        }
+
+        .metric.fail i {
+            color: #FF003C;
+        }
+
+        /* Inbox / Onboarding Modal */
+        #inbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .email-content {
+            background: #fff;
+            color: #111;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .email-header {
+            background: #6A0DAD;
+            padding: 1.5rem 2rem;
+            color: #fff;
+            position: relative;
+            border-bottom: 4px solid #FF007F;
+        }
+
+        .email-header h2 {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .email-meta {
+            font-size: 0.9rem;
+            color: #e1cbf5;
+            margin-top: 5px;
+        }
+
+        .email-body {
+            padding: 2rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        .email-body h4 {
+            color: #6A0DAD;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .email-body ul {
+            padding-left: 1.2rem;
+        }
+
+        .email-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-close-email {
+            display: block;
+            width: 100%;
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem;
+            text-decoration: none;
             font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
             font-size: 1.1rem;
         }
 
-        .history-data span {
-            margin-right: 1rem;
-            color: #aaa;
-            font-size: 0.9rem;
+        .btn-close-email:hover {
+            background: #FF007F;
         }
 
-        .history-data i {
-            color: #520a93;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Digital Logbook</h1>
-        <p style="color:#d1b3ff; margin-top:5px;">Track your daily metrics and watch your average improve.</p>
-    </header>
+    <!-- Onboarding Email Modal -->
+    <div id="inbox-modal">
+        <div class="email-content">
+            <div class="email-header">
+                <h2>Welcome to System Execution</h2>
+                <div class="email-meta">From: BWWL Coaching Team • Automated Onboarding</div>
+            </div>
+            <div class="email-body">
+                <p>Welcome. You are here because you are ready to stop guessing and start tracking. You cannot manage
+                    what you do not measure.</p>
+                <p>Before you log your first entry, understand why these specific metrics matter:</p>
+
+                <h4><i class="fas fa-tint"></i> The Water Metric</h4>
+                <p>Your liver requires massive amounts of water to metabolize fat. If you are dehydrated, fat burning
+                    physically halts. Aim for a minimum of 2.5 Liters (85 oz) daily. Thirst is often masked as hunger.
+                </p>
+
+                <h4><i class="fas fa-bed"></i> The Sleep Metric</h4>
+                <p>Fat loss happens when you sleep, not when you train. If you sleep less than 6 hours, your body pumps
+                    out Cortisol (stress hormone), which causes you to retain water weight and crave sugar the next day.
+                    7-8 hours is the non-negotiable standard.</p>
+
+                <h4><i class="fas fa-utensils"></i> Basic Food Logic</h4>
+                <p>Fad diets fail because they ignore the law of thermodynamics. To lose fat, you must be in a Caloric
+                    Deficit (burning more energy than you consume). Achieve this by prioritizing Protein (keeps you
+                    full) and Vegetables (high volume, low calorie).</p>
+
+                <h4><i class="fas fa-database"></i> How to use this Logbook</h4>
+                <ul>
+                    <li>Log your data every morning at the exact same time (after the bathroom, before breakfast).</li>
+                    <li>Do not obsess over daily weight fluctuations. Track the 7-day average.</li>
+                    <li>Be utterly honest. The data only judges your actions, not your worth.</li>
+                </ul>
+
+                <button class="btn-close-email" onclick="closeInbox()"><i class="fas fa-check"></i> I UNDERSTAND. LET'S
+                    BEGIN.</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Digital Command Log</h1>
+        <p>Measure daily output. Identify friction points. Track your physical transformation via brutal honesty and
+            data.</p>
+    </div>
 
     <div class="container">
 
-        <div class="tracker-grid">
-            <h2 style="margin-top:0;">Log Today's Data</h2>
+        <!-- Input Form -->
+        <div class="log-panel">
+            <h2><i class="fas fa-pen-square"></i> Log Today's Data</h2>
+
             <div class="form-group">
-                <label><i class="fas fa-weight"></i> Current Weight (lbs/kg)</label>
-                <input type="number" id="weight" class="form-control" placeholder="e.g. 185">
+                <label><i class="fas fa-weight"></i> Morning Weight (lbs/kg)</label>
+                <input type="number" step="0.1" id="log-weight" class="form-control" placeholder="e.g. 184.5">
             </div>
+
             <div class="form-group">
-                <label><i class="fas fa-tint"></i> Water Intake (Liters/Glasses)</label>
-                <input type="number" id="water" class="form-control" placeholder="e.g. 2.5">
+                <label><i class="fas fa-shoe-prints"></i> Steps Taken Yesterday</label>
+                <input type="number" id="log-steps" class="form-control" placeholder="e.g. 8500">
             </div>
+
             <div class="form-group">
-                <label><i class="fas fa-bed"></i> Sleep (Hours)</label>
-                <input type="number" id="sleep" class="form-control" placeholder="e.g. 7.5">
+                <label><i class="fas fa-tint"></i> Water Intake (Liters)</label>
+                <input type="number" step="0.1" id="log-water" class="form-control" placeholder="e.g. 2.5">
             </div>
+
             <div class="form-group">
-                <label><i class="fas fa-running"></i> Workout Complete?</label>
-                <select id="workout" class="form-control">
+                <label><i class="fas fa-bed"></i> Sleep Quality (Hours)</label>
+                <input type="number" step="0.5" id="log-sleep" class="form-control" placeholder="e.g. 7.0">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-dumbbell"></i> Workout Executed?</label>
+                <select id="log-workout" class="form-control">
                     <option value="Yes">Yes, crushed it.</option>
-                    <option value="Rest">Rest Day.</option>
-                    <option value="No">No, skipped.</option>
+                    <option value="Rest">Active Rest Day.</option>
+                    <option value="No">No, skipped it.</option>
                 </select>
             </div>
-            <button class="btn" onclick="saveData()">Save Entry</button>
+
+            <div class="form-group">
+                <label><i class="fas fa-brain"></i> Daily Mood / Energy</label>
+                <div class="mood-selector" id="mood-selector">
+                    <button class="mood-btn" onclick="setMood('😤', this)">😤</button>
+                    <button class="mood-btn" onclick="setMood('😊', this)">😊</button>
+                    <button class="mood-btn" onclick="setMood(' خ_خ', this)">خ_خ</button>
+                </div>
+            </div>
+
+            <button class="btn-submit" onclick="saveEntry()"><i class="fas fa-save"></i> Upload Entry to Log</button>
         </div>
 
-        <h3>Your Log History</h3>
-        <div id="history-container">
-            <!-- Entries injected here via JS -->
+        <!-- History Feed -->
+        <div class="history-feed">
+            <h3 class="history-header">Log History</h3>
+            <div id="feed-container">
+                <!-- Entries injected via JS -->
+            </div>
         </div>
 
     </div>
 
     <script>
-        function saveData() {
-            const weight = document.getElementById('weight').value;
-            const water = document.getElementById('water').value;
-            const sleep = document.getElementById('sleep').value;
-            const workout = document.getElementById('workout').value;
+        let selectedMood = '😊';
 
-            if (!weight || !water || !sleep) {
-                alert("Please fill in all numerical fields.");
+        function checkOnboarding() {
+            const hasSeen = localStorage.getItem('bwwl_log_onboarded');
+            if (!hasSeen) {
+                document.getElementById('inbox-modal').style.display = 'flex';
+            }
+        }
+
+        function closeInbox() {
+            localStorage.setItem('bwwl_log_onboarded', 'true');
+            document.getElementById('inbox-modal').style.display = 'none';
+        }
+
+        function setMood(mood, btnEl) {
+            selectedMood = mood;
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+        }
+
+        function saveEntry() {
+            const weight = document.getElementById('log-weight').value;
+            const steps = document.getElementById('log-steps').value;
+            const water = document.getElementById('log-water').value;
+            const sleep = document.getElementById('log-sleep').value;
+            const workout = document.getElementById('log-workout').value;
+
+            if (!weight || !steps || !water || !sleep) {
+                alert("Please fill in all numerical fields to maintain accurate data.");
                 return;
             }
 
             const today = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
-            const entry = { date: today, weight, water, sleep, workout };
+            const entry = { date: today, weight, steps, water, sleep, workout, mood: selectedMood };
 
-            let history = JSON.parse(localStorage.getItem('bwwl_tracker')) || [];
-            // Prevent multiple entries per day for simplicity in UI, replace if exists
-            history = history.filter(item => item.date !== today);
+            let history = JSON.parse(localStorage.getItem('bwwl_tracker_os')) || [];
+            history = history.filter(item => item.date !== today); // Prevent dupes, overwrite today
             history.unshift(entry); // Add to top
 
-            localStorage.setItem('bwwl_tracker', JSON.stringify(history));
+            localStorage.setItem('bwwl_tracker_os', JSON.stringify(history));
 
-            // Clear form
-            document.getElementById('weight').value = '';
-            document.getElementById('water').value = '';
-            document.getElementById('sleep').value = '';
+            // Visual reset
+            document.getElementById('log-weight').value = '';
+            document.getElementById('log-steps').value = '';
+            document.getElementById('log-water').value = '';
+            document.getElementById('log-sleep').value = '';
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
 
-            renderHistory();
+            renderFeed();
+
+            // Scroll to feed on mobile
+            if (window.innerWidth < 768) {
+                document.querySelector('.history-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
-        function renderHistory() {
-            const container = document.getElementById('history-container');
-            const history = JSON.parse(localStorage.getItem('bwwl_tracker')) || [];
+        function renderFeed() {
+            const container = document.getElementById('feed-container');
+            const history = JSON.parse(localStorage.getItem('bwwl_tracker_os')) || [];
 
             if (history.length === 0) {
-                container.innerHTML = '<p style="color:#888; text-align:center;">No entries yet. Log today to start!</p>';
+                container.innerHTML = '<p style="color:#888; text-align:center; padding: 2rem; border: 1px dashed #333; border-radius: 8px;">Log is currently empty. Input your first set of data today.</p>';
                 return;
             }
 
             let html = '';
-            history.forEach(item => {
-                const workoutIcon = item.workout === 'Yes' ? '<i class="fas fa-check-circle text-green" style="color:#00FF00"></i>' : (item.workout === 'Rest' ? '<i class="fas fa-couch"></i>' : '<i class="fas fa-times-circle" style="color:#FF003C"></i>');
+            history.forEach((item, index) => {
+
+                // Workout styling logic
+                let workClass = 'metric';
+                let workIcon = '<i class="fas fa-couch"></i>';
+                if (item.workout === 'Yes') { workClass += ' success'; workIcon = '<i class="fas fa-check-circle"></i>'; }
+                if (item.workout === 'No') { workClass += ' fail'; workIcon = '<i class="fas fa-times-circle"></i>'; }
+
                 html += `
-                <div class="history-card">
-                    <div class="history-date">${item.date}</div>
-                    <div class="history-data">
-                        <span><i class="fas fa-weight"></i> ${item.weight}</span>
-                        <span><i class="fas fa-tint"></i> ${item.water}</span>
-                        <span><i class="fas fa-bed"></i> ${item.sleep}h</span>
-                        <span style="margin-right:0;">${workoutIcon} ${item.workout}</span>
+                <div class="entry-card" style="animation-delay: ${index * 0.1}s">
+                    <div class="entry-date">${item.date} <span class="entry-mood">${item.mood}</span></div>
+                    <div class="metrics-grid">
+                        <div class="metric"><i class="fas fa-weight"></i> ${item.weight} lbs</div>
+                        <div class="metric"><i class="fas fa-shoe-prints"></i> ${Number(item.steps).toLocaleString()} steps</div>
+                        <div class="metric"><i class="fas fa-tint"></i> ${item.water} L</div>
+                        <div class="metric"><i class="fas fa-bed"></i> ${item.sleep} hrs</div>
+                        <div class="${workClass}" style="grid-column: span 2;">${workIcon} Workout: ${item.workout}</div>
                     </div>
                 </div>
                 `;
@@ -217,7 +545,8 @@
         }
 
         // Initialize
-        renderHistory();
+        checkOnboarding();
+        renderFeed();
     </script>
 </body>
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>21 Day Challenge | BWWL</title>
+    <title>21 Day Challenge OS | BWWL</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
@@ -16,27 +16,86 @@
             background: #050505;
             color: #fff;
             font-family: 'Inter', sans-serif;
+            padding-bottom: 3rem;
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(230, 20, 105, 0.8), rgba(0, 0, 0, 0.9));
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(230, 20, 105, 0.9), rgba(0, 0, 0, 0.9));
+            padding: 4rem 1rem 5rem;
             text-align: center;
-            border-bottom: 3px solid #e61469;
+            border-radius: 0 0 30px 30px;
+            position: relative;
         }
 
         .hero h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
+        /* Stats Dashboard */
+        .stats-bar {
+            max-width: 800px;
+            margin: -40px auto 2rem;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            padding: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h4 {
+            margin: 0 0 5px;
+            color: #aaa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat span {
+            font-size: 2rem;
+            font-family: 'Oswald', sans-serif;
+            color: #e61469;
+        }
+
+        .stat .locked-cnt {
+            color: #555;
+        }
+
         .container {
             max-width: 800px;
-            margin: 2rem auto;
+            margin: 0 auto;
             padding: 0 1rem;
+        }
+
+        .level-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .level-badge {
+            background: #333;
+            color: #ccc;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
 
         .day-list {
@@ -47,9 +106,11 @@
 
         .day-panel {
             background: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
+            border: 1px solid #222;
+            border-left: 4px solid #333;
+            border-radius: 10px;
             overflow: hidden;
+            transition: 0.3s;
         }
 
         .day-header {
@@ -58,75 +119,123 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            background: #1a1a1a;
+            background: #161616;
             transition: 0.3s;
         }
 
         .day-header:hover {
-            background: #222;
+            background: #1a1a1a;
+            border-left-color: #e61469;
         }
 
         .day-header h3 {
             margin: 0;
-            font-size: 1.2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #ccc;
+        }
+
+        /* Status Modifiers */
+        .day-panel.unlocked {
+            border-left-color: #e61469;
+            box-shadow: 0 0 15px rgba(230, 20, 105, 0.1);
+        }
+
+        .day-panel.unlocked .day-header h3 {
             color: #fff;
+        }
+
+        .day-panel.completed {
+            border-left-color: #00FF00;
+            opacity: 0.8;
+        }
+
+        .day-panel.completed .day-header h3 {
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .day-panel.locked {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .icon-status {
+            font-size: 1.2rem;
+        }
+
+        .fa-lock {
+            color: #444;
+        }
+
+        .fa-unlock {
+            color: #e61469;
+        }
+
+        .fa-check-circle {
+            color: #00FF00;
         }
 
         .day-content {
             display: none;
-            padding: 1.5rem;
-            border-top: 1px solid #333;
-            line-height: 1.6;
-            color: #ccc;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #222;
+            line-height: 1.7;
+            color: #ddd;
+            background: #0a0a0a;
         }
 
         .day-content.open {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: slideDown 0.3s ease;
         }
 
-        .lock-icon {
-            color: #555;
+        .day-content p {
+            font-size: 1.1rem;
+            margin-top: 0;
         }
 
-        .unlock-icon {
-            color: #e61469;
+        .insight-box {
+            background: rgba(230, 20, 105, 0.05);
+            border: 1px solid rgba(230, 20, 105, 0.3);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #ffb3d1;
         }
 
         .complete-btn {
             background: #e61469;
             color: #fff;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            margin-top: 1.5rem;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .complete-btn:hover {
             background: #c20e56;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(230, 20, 105, 0.3);
         }
 
         .complete-btn.done {
-            background: #00FF00;
-            color: #000;
+            background: #222;
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            box-shadow: none;
+            transform: none;
             cursor: default;
         }
 
-        .day-panel.completed .day-header h3 {
-            text-decoration: line-through;
-            color: #888;
-        }
-
-        .day-panel.completed .day-header {
-            border-left: 4px solid #00FF00;
-        }
-
-        @keyframes fadeIn {
+        @keyframes slideDown {
             from {
                 opacity: 0;
                 transform: translateY(-10px);
@@ -141,94 +250,174 @@
 </head>
 
 <body>
+
     <div class="hero">
-        <h1>21-Day Motivation & Consistency</h1>
-        <p style="color:#ddd; margin-top:10px;">Complete one task per day. Unlock the next.</p>
+        <h1>21-Day Gamified Consistency</h1>
+        <p style="color:#ddd; margin:10px auto 0; max-width:600px; font-size:1.1rem;">Motivation gets you started. Habit
+            keeps you going. Unlock the next level by physically executing today's challenge.</p>
     </div>
 
-    <div class="container">
-        <div class="day-list" id="challenge-list">
-            <!-- Injected via JS -->
+    <div class="stats-bar">
+        <div class="stat">
+            <h4>Days Conquered</h4>
+            <span id="stat-done">0</span> <span style="font-size:1rem; color:#aaa;">/ 21</span>
+        </div>
+        <div class="stat">
+            <h4>Current Level</h4>
+            <span id="stat-level" style="color:#00FF00;">1</span>
+        </div>
+        <div class="stat">
+            <h4>Locked</h4>
+            <span id="stat-locked" class="locked-cnt">20</span>
         </div>
     </div>
 
+    <div class="container">
+
+        <div class="level-header">Level 1: The Foundation <span class="level-badge">Days 1 - 7</span></div>
+        <div class="day-list" id="list-l1"></div>
+
+        <div class="level-header" style="border-bottom-color:#e61469;">Level 2: Friction & Discipline <span
+                class="level-badge">Days 8 - 14</span></div>
+        <div class="day-list" id="list-l2"></div>
+
+        <div class="level-header" style="border-bottom-color:#00FF00;">Level 3: The Identity Shift <span
+                class="level-badge">Days 15 - 21</span></div>
+        <div class="day-list" id="list-l3"></div>
+
+    </div>
+
     <script>
-        const challenges = [
-            { title: "Day 1: The 'Why' Declaration", task: "Write down exactly why you are doing this. Tape it to your bathroom mirror. Read it every morning." },
-            { title: "Day 2: The Water Flush", task: "Before you drink coffee or eat anything, drink one full glass of water (16oz) immediately upon waking up." },
-            { title: "Day 3: The 15-Minute Rule", task: "Set a timer for 15 minutes. For those 15 minutes, you must move. Go for a brisk walk. No phone checking." },
-            { title: "Day 4: Remove The Enemy", task: "Take all tempting 'trigger' foods (cookies, chips, soda) and throw them in the trash. If it's in your house, you'll eat it." },
-            { title: "Day 5: Sleep Optimization", task: "Turn off all screens 45 minutes before you go to bed tonight to optimize hunger hormones." },
-            { title: "Day 6: The Protein Check", task: "Ensure every single meal today contains a solid source of protein." },
-            { title: "Day 7: Gratitude Reflection", task: "You survived Week 1. Write down 3 things your body allowed you to do today that you are grateful for." }
-            // Add remaining days conceptually
+        const challengeData = [
+            // Level 1: Foundation
+            { day: 1, title: "The Purge", content: "Take a trash bag and physically throw away every single high-sugar, highly processed 'trigger' food in your kitchen. If you buy it, you will eventually eat it at 11 PM.", insight: "Willpower is a finite resource. Do not rely on it. Engineer your environment so that failing requires effort." },
+            { day: 2, title: "The 16oz Morning Flush", content: "Place a 16oz glass of water next to your bed tonight. Tomorrow morning, before you touch your phone, before you make coffee, you must drink the entire glass.", insight: "Your body wakes up dehydrated, which often disguises itself as hunger and fatigue. Hydration is the first domino." },
+            { day: 3, title: "Delete The Scroll", content: "Check your screen time. Find your most used social app. Delete it off your phone for 24 hours. The 45 minutes you spend scrolling tonight is the exact time you need to meal prep or sleep.", insight: "You don't lack time. You lack time management. Reclaim your focus." },
+            { day: 4, title: "The Protein Baseline", content: "Your single nutritional goal today: Consume 100g of protein. Track it. Learn what 100g actually feels like in food volume.", insight: "Protein is the most satiating macronutrient. It physically stops the brain from sending hunger signals." },
+            { day: 5, title: "The 20-Minute Pace", content: "Force yourself to take exactly 20 minutes to finish your dinner tonight. Put the fork down between every single bite. Chew deliberately.", insight: "It takes 20 minutes for the stomach stretch receptors to signal the brain that you are full. Speed eating guarantees overeating." },
+            { day: 6, title: "10k By Any Means", content: "Hit exactly 10,000 steps today. Park further away. Pace while on a phone call. Walk around the block. Do whatever it takes.", insight: "NEAT (Non-Exercise Activity) burns far more total calories than a 45-minute structured gym session." },
+            { day: 7, title: "The Sunday Armor", content: "Cook exactly three meals tonight and put them in Tupperware for Monday and Tuesday lunch. The decision fatigue of the week destroys diets.", insight: "Relying on motivation on a stressful Tuesday afternoon is a losing game. Prep is your armor." },
+
+            // Level 2: Friction & Discipline
+            { day: 8, title: "The 14-Hour Fast", content: "Stop eating at 7:00 PM tonight. Do not consume a single calorie until 9:00 AM tomorrow. Water and black coffee only.", insight: "Late-night snacking is rarely hunger; it is almost always boredom, stress, or habit." },
+            { day: 9, title: "Silent Workout", content: "Complete a 20-minute home workout today in complete silence. No music. No podcast. No TV.", insight: "Distractions prevent you from focusing on the mind-muscle connection and the discomfort required for growth." },
+            { day: 10, title: "The Liquid Calorie Ban", content: "Zero liquid calories today. No juice, no milk in your coffee, no soda, no alcohol. If you drink it, it must equal 0 calories.", insight: "Liquid sugar bypasses the brain's fullness sensors entirely. It is a straight injection of fat storage." },
+            { day: 11, title: "The Vegetable Dominance", content: "For both lunch and dinner today, 50% of your physical plate must be covered in green vegetables. Broccoli, spinach, asparagus.", insight: "Vegetables provide physical volume in the stomach, tricking the brain into feeling stuffed for almost zero calories." },
+            { day: 12, title: "Cold Exposure", content: "At the end of your shower today, turn the water to pure freezing cold for exactly 30 seconds. Do not step out. Control your breathing.", insight: "Fat loss requires getting comfortable with physical discomfort. Training the mind to accept cold water trains the mind to accept a diet." },
+            { day: 13, title: "The Friction Audit", content: "Identify the one specific habit that ruined your progress last week. Add friction to it. E.g., if you order UberEats, delete the app.", insight: "Make bad habits incredibly annoying and difficult to execute." },
+            { day: 14, title: "Read The Label", content: "Find 3 items in your pantry. Read the nutritional label. Look specifically at 'Added Sugars' and 'Total Servings'.", insight: "A 'small' bag of chips often contains 3.5 servings. Ignorance of caloric density is why people plateau." },
+
+            // Level 3: Identity Shift
+            { day: 15, title: "The Mirror Contract", content: "Look yourself in the eyes in the mirror for 60 seconds. Say out loud: 'I am no longer someone who quits when it gets hard.'", insight: "Your behaviors are a reflection of your identity. If you identify as someone who 'always struggles with weight', you will fulfill that prophecy." },
+            { day: 16, title: "Fasted Morning Output", content: "Wake up and immediately complete 15 minutes of brisk cardio (walking, jogging, biking) before eating breakfast.", insight: "Performing light cardio on an empty stomach utilizes stored liver glycogen and trains metabolic flexibility." },
+            { day: 17, title: "The Gratitude Shift", content: "Write down 3 things your body allowed you to physically do today. Focus on function, not appearance.", insight: "Shifting focus from 'how my body looks' to 'what my body can do' builds long-term respect for the vessel." },
+            { day: 18, title: "The 80% Rule", content: "Stop eating dinner tonight exactly when you feel 80% full. Do not wait until you are 'stuffed'.", insight: "The Japanese concept of Hara Hachi Bu. By the time you feel 100% full, you have already overeaten." },
+            { day: 19, title: "The Social Defense", content: "Practise ordering out. Go to a restaurant website, read the menu, and mentally pick the highest protein, lowest calorie option.", insight: "You must learn to navigate the real world. A diet that breaks every time you leave the house is useless." },
+            { day: 20, title: "The Sleep Non-Negotiable", content: "You must be physically in bed, lights out, device away at 10:00 PM tonight.", insight: "Deep sleep is when the body actually recovers and balances the hormones necessary for fat burning." },
+            { day: 21, title: "The New Standard", content: "You completed 21 days. The challenge is over, but this is now simply the baseline expectation of how you live your life. Write your 6-month goal.", insight: "Consistency is not an event. It is a standard you hold yourself to every single day." }
         ];
 
-        // Fill out array to 21 for demonstration
-        for (let i = 8; i <= 21; i++) {
-            challenges.push({ title: `Day ${i}: Consistency Check`, task: "Continue executing your daily habits. Drink water, move for 30 minutes, prioritizing protein." });
+        let state = JSON.parse(localStorage.getItem('bwwl_21day_os')) || {};
+
+        function init() {
+            renderLists();
+            updateStats();
         }
 
-        const state = JSON.parse(localStorage.getItem('bwwl_21day')) || {};
+        function renderLists() {
+            const list1 = document.getElementById('list-l1'); list1.innerHTML = '';
+            const list2 = document.getElementById('list-l2'); list2.innerHTML = '';
+            const list3 = document.getElementById('list-l3'); list3.innerHTML = '';
 
-        function render() {
-            const list = document.getElementById('challenge-list');
-            list.innerHTML = '';
+            challengeData.forEach((ch, index) => {
+                const dayStr = ch.day.toString();
+                const isCompleted = state[dayStr] === true;
 
-            let html = '';
-            challenges.forEach((ch, index) => {
-                const dayNum = index + 1;
-                const isCompleted = state[dayNum] === true;
-                const isLocked = !isCompleted && dayNum > 1 && !state[dayNum - 1]; // Only unlock if previous is done
+                // Logic: Day 1 is always unlocked. Others are unlocked if the previous day is completed.
+                let isUnlocked = false;
+                if (ch.day === 1) isUnlocked = true;
+                else if (state[(ch.day - 1).toString()] === true) isUnlocked = true;
 
-                html += `
-                <div class="day-panel ${isCompleted ? 'completed' : ''}" id="panel-${dayNum}">
-                    <div class="day-header" onclick="togglePanel(${dayNum}, ${isLocked})">
-                        <h3>${ch.title}</h3>
-                        ${isCompleted ? '<i class="fas fa-check-circle" style="color:#00FF00;"></i>' :
-                        isLocked ? '<i class="fas fa-lock lock-icon"></i>' :
-                            '<i class="fas fa-unlock unlock-icon"></i>'}
-                    </div>
-                    <div class="day-content" id="content-${dayNum}">
-                        <p>${ch.task}</p>
-                        ${isCompleted
-                        ? `<button class="complete-btn done" disabled><i class="fas fa-check"></i> Completed</button>`
-                        : `<button class="complete-btn" onclick="markComplete(${dayNum})">Mark as Complete</button>`
+                let statusClass = 'locked';
+                let iconClass = 'fa-lock';
+                if (isUnlocked && !isCompleted) { statusClass = 'unlocked'; iconClass = 'fa-unlock'; }
+                if (isCompleted) { statusClass = 'completed'; iconClass = 'fa-check-circle'; }
+
+                const panelHtml = `
+                    <div class="day-panel ${statusClass}" id="panel-${ch.day}">
+                        <div class="day-header" onclick="toggleContent(${ch.day})">
+                            <h3><span style="color:#555; font-size:1rem; margin-right:10px;">DAY ${ch.day}</span> ${ch.title}</h3>
+                            <i class="fas ${iconClass} icon-status"></i>
+                        </div>
+                        <div class="day-content" id="content-${ch.day}">
+                            <p><strong>MISSION:</strong> ${ch.content}</p>
+                            <div class="insight-box">
+                                <i class="fas fa-brain" style="margin-right:10px;"></i> <strong>THE INSIGHT:</strong> ${ch.insight}
+                            </div>
+                            ${isCompleted
+                        ? `<button class="complete-btn done" disabled><i class="fas fa-check"></i> Executed & Conquered</button>`
+                        : `<button class="complete-btn" onclick="markComplete(${ch.day})">Confirm Execution</button>`
                     }
+                        </div>
                     </div>
-                </div>
                 `;
+
+                if (ch.day <= 7) list1.innerHTML += panelHtml;
+                else if (ch.day <= 14) list2.innerHTML += panelHtml;
+                else list3.innerHTML += panelHtml;
             });
-            list.innerHTML = html;
         }
 
-        function togglePanel(dayNum, isLocked) {
-            if (isLocked) {
-                alert("You must complete the previous days first!");
-                return;
+        function toggleContent(day) {
+            const el = document.getElementById(`content-${day}`);
+            const panel = document.getElementById(`panel-${day}`);
+
+            if (panel.classList.contains('locked')) return; // Can't open locked
+
+            if (el.classList.contains('open')) {
+                el.classList.remove('open');
+            } else {
+                // close all others
+                document.querySelectorAll('.day-content').forEach(c => c.classList.remove('open'));
+                el.classList.add('open');
             }
-            const content = document.getElementById(`content-${dayNum}`);
-            content.classList.toggle('open');
         }
 
-        function markComplete(dayNum) {
-            state[dayNum] = true;
-            localStorage.setItem('bwwl_21day', JSON.stringify(state));
-            render();
-            // Automatically open next day if it exists
-            if (challenges.length > dayNum) {
+        function markComplete(day) {
+            state[day.toString()] = true;
+            localStorage.setItem('bwwl_21day_os', JSON.stringify(state));
+
+            init(); // re-render EVERYTHING to update unlocks
+
+            // Auto-open the newly unlocked day
+            const nextDay = day + 1;
+            if (nextDay <= 21) {
                 setTimeout(() => {
-                    document.getElementById(`content-${dayNum + 1}`).classList.add('open');
-                    document.getElementById(`panel-${dayNum + 1}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                    const nextPanel = document.getElementById(`panel-${nextDay}`);
+                    const nextContent = document.getElementById(`content-${nextDay}`);
+                    if (nextPanel && nextContent) {
+                        nextContent.classList.add('open');
+                        nextPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }
                 }, 500);
             }
         }
 
-        render();
-        // Open day 1 by default if nothing is completed
-        if (!state[1]) {
-            document.getElementById('content-1').classList.add('open');
+        function updateStats() {
+            let done = 0;
+            for (let i = 1; i <= 21; i++) { if (state[i]) done++; }
+
+            document.getElementById('stat-done').innerText = done;
+            document.getElementById('stat-locked').innerText = 21 - done;
+
+            let level = 1;
+            if (done >= 7) level = 2;
+            if (done >= 14) level = 3;
+            if (done === 21) document.getElementById('stat-level').innerText = "MAX";
+            else document.getElementById('stat-level').innerText = level;
         }
+
+        init();
     </script>
 </body>
 

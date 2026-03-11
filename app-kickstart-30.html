@@ -10,70 +10,208 @@
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-color: #050505;
             color: #fff;
+            font-family: 'Inter', sans-serif;
             padding-bottom: 50px;
+            margin: 0;
         }
 
         .app-header {
             background: linear-gradient(135deg, #FF007F, #6A0DAD);
-            padding: 2rem;
-            border-radius: 0 0 20px 20px;
+            padding: 3rem 1.5rem 4rem;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .app-header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .app-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -40px auto 2rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Onboarding Modal */
+        #onboarding-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .onboarding-card {
+            background: #111;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .onboarding-card h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF007F;
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .onboarding-card input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+        }
+
+        .btn-brand {
+            background: linear-gradient(90deg, #FF007F, #6A0DAD);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+        }
+
+        .btn-brand:hover {
+            transform: scale(1.05);
+        }
+
+        /* Progress & Profile */
+        .dashboard-top {
+            background: #111;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .profile-info {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat-box {
             text-align: center;
         }
 
-        .progress-container {
-            background: #1a1a1a;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: -30px auto 2rem;
-            max-width: 800px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 10;
-            border: 1px solid #333;
+        .stat-label {
+            font-size: 0.85rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-val {
+            font-size: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            color: #fff;
+        }
+
+        .progress-box {
+            flex-grow: 1;
+            min-width: 250px;
         }
 
         .progress-bar-bg {
             width: 100%;
-            height: 20px;
-            background: #333;
-            border-radius: 10px;
+            height: 12px;
+            background: #222;
+            border-radius: 6px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #FF007F, #6A0DAD);
             width: 0%;
-            transition: width 0.4s ease;
+            transition: width 0.5s ease;
         }
 
+        /* Day Grid */
         .day-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
+            margin-bottom: 3rem;
         }
 
         .day-card {
-            background: #111;
+            background: #1a1a1a;
             border: 1px solid #333;
-            border-radius: 8px;
-            padding: 1rem;
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card h3 {
+            margin: 0 0 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #ccc;
+        }
+
+        .day-card i {
+            font-size: 1.5rem;
+            color: #444;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            border-color: #6A0DAD;
         }
 
         .day-card.active {
             border-color: #FF007F;
-            background: rgba(255, 0, 127, 0.1);
+            background: rgba(255, 0, 127, 0.05);
+        }
+
+        .day-card.active h3 {
+            color: #fff;
         }
 
         .day-card.completed {
@@ -81,27 +219,59 @@
             background: rgba(0, 255, 0, 0.05);
         }
 
-        .day-card:hover {
-            transform: translateY(-3px);
+        .day-card.completed i {
+            color: #00FF00;
+        }
+
+        .day-card.completed h3 {
+            color: #fff;
+        }
+
+        /* Active Day Content */
+        .active-day-panel {
+            background: #111;
+            border: 1px solid #333;
+            border-left: 5px solid #FF007F;
+            border-radius: 12px;
+            padding: 2rem;
+            display: none;
+            animation: slideUp 0.4s ease;
+        }
+
+        .active-day-panel h2 {
+            font-family: 'Oswald', sans-serif;
+            margin-top: 0;
+            font-size: 2rem;
+            color: #fff;
+            border-bottom: 1px solid #222;
+            padding-bottom: 1rem;
+        }
+
+        .micro-lesson {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #ddd;
         }
 
         .task-list {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: #111;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #333;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
         }
 
         .task-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
             padding: 1rem;
             border-bottom: 1px solid #222;
             font-size: 1.1rem;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         .task-item:last-child {
@@ -109,16 +279,21 @@
         }
 
         .task-item .check {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid #555;
+            min-width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            border: 2px solid #666;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
             color: transparent;
-            transition: all 0.2s;
+            transition: 0.2s;
+            margin-top: 2px;
+        }
+
+        .task-item:hover .check {
+            border-color: #FF007F;
         }
 
         .task-item.done .check {
@@ -131,105 +306,317 @@
             text-decoration: line-through;
             color: #888;
         }
+
+        /* Celebration Modal */
+        #celebration-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .celebration-content {
+            background: linear-gradient(135deg, #111, #1a0010);
+            border: 2px solid #FF007F;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(255, 0, 127, 0.3);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .celebration-content i {
+            font-size: 4rem;
+            color: #00FF00;
+            margin-bottom: 1rem;
+        }
+
+        .celebration-content h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .celebration-content p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="onboarding-modal">
+        <div class="onboarding-card">
+            <h2>Welcome to Your Transformation.</h2>
+            <p style="color:#aaa; margin-bottom:2rem;">Let's customize your 30-day journey. Be honest with yourself.</p>
+            <input type="number" id="input-current-weight" placeholder="Current Weight (lbs/kg)" required>
+            <input type="number" id="input-target-weight" placeholder="Ideal Target Weight" required>
+            <button class="btn-brand" onclick="saveProfile()">Begin Kickstart</button>
+        </div>
+    </div>
+
+    <div id="celebration-modal" onclick="this.style.display='none'">
+        <div class="celebration-content" onclick="event.stopPropagation()">
+            <i class="fas fa-check-circle"></i>
+            <h2>Well Done.</h2>
+            <p>Day execution complete. You kept the promise to yourself today. Be proud. Rest up and prepare for
+                tomorrow.</p>
+            <button class="btn-brand"
+                onclick="document.getElementById('celebration-modal').style.display='none'">Continue</button>
+        </div>
+    </div>
+
     <div class="app-header">
-        <h1><i class="fas fa-bolt"></i> 30-Day Kickstart OS</h1>
-        <p>Your interactive daily execution dashboard.</p>
+        <h1>30-Day Kickstart Program</h1>
+        <p>Premium Daily Execution & Progression System</p>
     </div>
 
     <div class="container">
-        <div class="progress-container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-                <h3 style="margin:0;">Kickstart Progress</h3>
-                <span id="progress-text" style="font-weight:bold; color: #FF007F;">0%</span>
+        <div class="dashboard-top">
+            <div class="profile-info">
+                <div class="stat-box">
+                    <div class="stat-label">Starting Weight</div>
+                    <div class="stat-val" id="disp-start">--</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Target Weight</div>
+                    <div class="stat-val" id="disp-target">--</div>
+                </div>
             </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" id="progress-bar"></div>
+            <div class="progress-box">
+                <div style="display: flex; justify-content: space-between; margin-bottom:5px;">
+                    <span style="font-size:0.9rem; color:#aaa; font-weight:bold; text-transform:uppercase;">Program
+                        Completion</span>
+                    <span id="progress-percent" style="color:#FF007F; font-weight:bold;">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
             </div>
-        </div>
-
-        <div class="text-center mb-4">
-            <h2 id="current-day-title">Select a Day</h2>
         </div>
 
         <div class="day-grid" id="day-grid">
-            <!-- Days injected via JS -->
+            <!-- Rendered via JS -->
         </div>
 
-        <div class="task-list" id="task-list" style="display: none;">
-            <!-- Tasks injected via JS -->
+        <div class="active-day-panel" id="active-day-panel">
+            <h2 id="panel-title">Day X</h2>
+            <div class="micro-lesson" id="panel-lesson">
+                Lesson content goes here.
+            </div>
+            <h3
+                style="font-family:'Oswald', sans-serif; margin-top:0; color:#FF007F; letter-spacing:1px; text-transform:uppercase;">
+                Daily Execution Tasks</h3>
+            <div class="task-list" id="task-list">
+                <!-- Rendered via JS -->
+            </div>
         </div>
     </div>
 
     <script>
-        const totalDays = 30;
-        const state = JSON.parse(localStorage.getItem('bwwl_kickstart')) || {};
-        let selectedDay = 1;
+        // Content for 30 Unique Days
+        const dayContent = [
+            { lesson: "<strong>The Water Flush:</strong> Today is about hydration. Your body often confuses thirst with hunger. Before you do anything else today, drink a large glass of water. This sets the tone for discipline early.", tasks: ["Drink a large glass of water immediately upon waking", "Take a \"Before\" photo for yourself (keep it hidden if you want, but take it)", "Move for 20 minutes (Walk or stretch)"] },
+            { lesson: "<strong>The Protein Priority:</strong> Protein keeps you full and protects your muscle as you lose weight. If you master protein, cravings drop significantly. Today, just focus on having one solid protein source with every meal.", tasks: ["Eat protein with Breakfast, Lunch, and Dinner", "Drink 2L of water total today", "Move for 25 minutes"] },
+            { lesson: "<strong>The Cleanout:</strong> Willpower is a finite resource. If junk is in the house, you will eventually eat it at 10 PM. Throw it away or hide it completely out of sight. Make bad habits difficult to execute.", tasks: ["Remove all \"trigger\" foods from immediate access", "Drink 2L of water", "Complete 15 minutes of an at-home bodyweight routine (See Workout Guide)"] },
+            { lesson: "<strong>The Sleep Imperative:</strong> Poor sleep spikes Cortisol (stress) and Ghrelin (hunger). It makes you crave sugar the next day. Tonight is an absolute priority for recovery.", tasks: ["No screens 45 minutes before bed", "Get into bed 30 minutes earlier than normal", "Hit your protein goal today"] },
+            { lesson: "<strong>The Coffee Crash:</strong> Liquid calories are the silent killer of fat loss. Lattes, sodas, and juices can easily add 500+ hidden calories to your day without making you full.", tasks: ["Consume ZERO liquid calories today (Black coffee, tea, water only)", "Walk 8,000 steps minimum", "Drink 2.5L of water"] },
+            { lesson: "<strong>The Vegetable Volume:</strong> Vegetables allow you to eat a massive plate of food without consuming dense calories. They provide the optical illusion of a feast, tricking your brain into feeling satisfied.", tasks: ["Fill half your plate with veggies for Lunch AND Dinner", "Hit 8,000 steps minimum", "Zero liquid calories"] },
+            { lesson: "<strong>Week 1 Reflection:</strong> You survived the hardest physical transition. Your body was fighting the changes, but you persisted. Discipline is a muscle, and yours is getting stronger.", tasks: ["Write down one victory from this past week", "Take a full active rest day (light walking/stretching only)", "Prep your meals or grocery shop for Week 2"] },
 
-        const tasks = [
-            "Drink 2-3 liters of water",
-            "Move for 30 minutes minimum",
-            "Eat protein with every meal",
-            "No liquid calories today"
+            { lesson: "<strong>The Movement Escalation:</strong> It's time to increase the baseline. NEAT (Non-Exercise Activity Thermogenesis) burns more calories total than a tough gym session. Be more fidgety. Park further away.", tasks: ["Increase step goal to 10,000 steps", "Take the stairs instead of the elevator everywhere", "Drink 2.5L of water"] },
+            { lesson: "<strong>The Snacking Trap:</strong> Grazing throughout the day stops your body from dipping into fat stores. It keeps insulin elevated. Today, we eat structured meals only.", tasks: ["Zero snacking between planned meals today", "10,000 steps", "Hit your protein goal"] },
+            { lesson: "<strong>Mindful Chewing:</strong> It takes your stomach 20 minutes to explicitly text your brain that it is full. Eat slower. Put the fork down between bites.", tasks: ["Take a minimum of 15 minutes to finish your dinner tonight", "Zero liquid calories", "Complete 20 minutes of home workouts"] },
+            { lesson: "<strong>The Stress Audit:</strong> Stress causes water retention and emotional eating. Let's find an outlet that doesn't involve food.", tasks: ["Spend 10 minutes focused completely on deep breathing or meditation", "10,000 steps", "Eat one massive salad today"] },
+            { lesson: "<strong>The Resistance Factor:</strong> Walking is great, but building muscle elevates your resting metabolic rate. You burn more calories just sitting on the couch if you have more muscle.", tasks: ["Complete the 'Lower Body Focus' workout from the Home Guide", "Drink a protein shake or eat a high-protein snack immediately after", "Drink 3L of water today"] },
+            { lesson: "<strong>Fiber is the Secret:</strong> Fiber keeps your gut healthy and slows digestion, keeping you full for hours. Berries, oats, beans, and greens.", tasks: ["Eat 25g+ of fiber today (or focus on eating 3 high-fiber foods)", "Zero snacking between meals", "10,000 steps"] },
+
+            { lesson: "<strong>🔥 DAY 14 CHECKPOINT: The Recalibration:</strong> You are 2 weeks in. This is exactly where the initial motivation wears off and raw discipline must take the wheel. How are you feeling? Do your clothes fit differently? Energy levels changing? Note these. Do not rely entirely on the scale today.", tasks: ["Assess your progress non-visually (energy, sleep quality, clothing fit)", "Take your Day 14 Progress Picture", "Do something kind for your body (Long bath, extra sleep, massage)"] },
+
+            { lesson: "<strong>The 80/20 Rule:</strong> Perfection leads to binging. If you eat perfectly 80% of the time, the 20% won't ruin your progress long-term. But the 80% must be completely locked in.", tasks: ["Plan your meals for the entire day right now", "Execute the plan flawlessly", "12,000 steps today"] },
+            { lesson: "<strong>Upper Body Strength:</strong> Time to build some posture and arm definition.", tasks: ["Complete 'Upper Body & Core' from the Home Workout Guide", "Drink 3L of water", "Zero liquid calories"] },
+            { lesson: "<strong>The Weekend Defense:</strong> Weekends destroy week-day progress for most people. Let's build a Saturday defensive plan.", tasks: ["Commit to waking up at your normal weekday time", "Get a morning walk in before doing anything else", "Stick to your protein targets"] },
+            { lesson: "<strong>The Environment Check:</strong> You are a product of your environment. If the people around you encourage poor eating, you must build boundaries.", tasks: ["Say 'no' to one food-related temptation today", "Eat half a plate of veggies with dinner", "12,000 steps"] },
+            { lesson: "<strong>Fasted Cardio Intro:</strong> Let's challenge the body slightly. Doing light cardio before breakfast uses glycogen from the liver and can tap into fat stores (though total daily deficit still matters most).", tasks: ["Do 20 minutes of brisk walking immediately after waking, before eating", "Drink 2 glasses of water before the walk", "Hit daily protein target"] },
+            { lesson: "<strong>The Core Protocol:</strong> Core strength stabilizes everything else. It improves posture, which instantly changes how your body looks.", tasks: ["Complete a 10-minute dedicated ab workout (planks, crunches)", "Focus on engaging your core while walking today", "12,000 steps"] },
+            { lesson: "<strong>Week 3 Reflection:</strong> The habits are forming. What felt impossible on Day 1 is now just part of your day. Recognize the identity shift happening internally.", tasks: ["Journal 3 paragraphs on how your mindset has changed since Day 1", "Take an active rest day", "Prep food for Week 4"] },
+
+            { lesson: "<strong>The Final Push Initiation:</strong> The last 10 days are where the deepest results happen because your body has adapted to the deficit and the routine.", tasks: ["Increase your daily water intake intentionally by 1 extra glass", "Zero snacking", "12,000 steps"] },
+            { lesson: "<strong>Full Body Burn:</strong> Time to integrate the upper and lower body for maximum caloric burn.", tasks: ["Complete 'The Cardio Finisher' from the Workout Guide 2 times through", "Stretch for 10 minutes post-workout", "Hit protein goals flawlessly"] },
+            { lesson: "<strong>Eating Out Strategy:</strong> Fat loss doesn't mean you can never eat at a restaurant. It means you must be strategic: ask for dressings on the side, prioritize lean meats, swap fries for a side salad.", tasks: ["Practise looking at a restaurant menu online and picking the healthiest option", "12,000 steps", "Zero liquid calories"] },
+            { lesson: "<strong>The Sleep Discipline Check:</strong> Have you been slipping on sleep? It's time to pull it back in. Cortisol makes you hold onto water weight.", tasks: ["Be in bed, lights out, device away at 10:00 PM (or 8 hours before wake)", "Drink relaxing tea before bed (peppermint/chamomile)", "Half-plate veggies at dinner"] },
+            { lesson: "<strong>Pacing the Day:</strong> Front-load your activity. If you leave your workout and steps for 8 PM, the chances of skipping skyrocket.", tasks: ["Complete your workout or walk before 12:00 PM", "Drink 3L of water by 6 PM", "Protein at every meal"] },
+            { lesson: "<strong>The Mirror Talk:</strong> Speak to yourself like someone you respect. The negative self-talk is toxic to the transformation process.", tasks: ["Look in the mirror and verbally state 2 things you are proud of yourself for accomplishing this month", "Zero snacking between meals", "12,000 steps"] },
+            { lesson: "<strong>The Grand Finale Prep:</strong> You are 3 days away. Do not let up now. Many quit right before the finish line because they feel 'good enough'. Push.", tasks: ["Complete your hardest workout of the month today", "Eat flawlessly according to plan", "Reflect on your Day 1 weight/feeling"] },
+            { lesson: "<strong>The Fasting Window:</strong> Let's close the eating window slightly today to give digestion a break. Stop eating at 7 PM.", tasks: ["Zero calories consumed after 7 PM tonight", "12,000 steps", "Drink 3L of water"] },
+            { lesson: "<strong>🏆 DAY 30: The Transformation:</strong> You did it. 30 days of consistent promises made and kept to yourself. The weight loss is excellent, but the self-belief you built is the true prize. Now, this simply becomes your lifestyle.", tasks: ["Take your final Day 30 Progress Pictures", "Weigh in and log the final number", "Plan your next 30 days. Don't stop here, elevate."] }
         ];
 
+        let state = JSON.parse(localStorage.getItem('bwwl_kickstart_os')) || {};
+        let profile = JSON.parse(localStorage.getItem('bwwl_profile')) || null;
+        let selectedDay = 1;
+
         function init() {
-            const grid = document.getElementById('day-grid');
-            grid.innerHTML = '';
-            let completedDays = 0;
-
-            for (let i = 1; i <= totalDays; i++) {
-                if (!state[i]) state[i] = { done: false, tasks: [false, false, false, false] };
-                if (state[i].done) completedDays++;
-
-                const dayEl = document.createElement('div');
-                dayEl.className = `day-card ${state[i].done ? 'completed' : ''} ${selectedDay === i ? 'active' : ''}`;
-                dayEl.innerHTML = `<h3 style="margin:0;">Day ${i}</h3><i class="fas ${state[i].done ? 'fa-check text-green' : 'fa-circle text-muted'} mt-2"></i>`;
-                dayEl.onclick = () => selectDay(i);
-                grid.appendChild(dayEl);
+            if (!profile) {
+                document.getElementById('onboarding-modal').style.display = 'flex';
+                return;
             }
 
-            const percent = Math.round((completedDays / totalDays) * 100);
-            document.getElementById('progress-bar').style.width = percent + '%';
-            document.getElementById('progress-text').innerText = percent + '%';
+            document.getElementById('disp-start').innerText = profile.startWeight;
+            document.getElementById('disp-target').innerText = profile.targetWeight;
+
+            renderGrid();
+            updateProgress();
+
+            // Find first incomplete day or default to 1
+            let startDay = 1;
+            for (let i = 1; i <= 30; i++) {
+                if (!state[i] || !state[i].done) {
+                    startDay = i;
+                    break;
+                }
+            }
+            selectDay(startDay);
+        }
+
+        function saveProfile() {
+            const current = document.getElementById('input-current-weight').value;
+            const target = document.getElementById('input-target-weight').value;
+            if (!current || !target) {
+                alert("Please fill in both fields honestly to calculate your baseline.");
+                return;
+            }
+            profile = { startWeight: current, targetWeight: target };
+            localStorage.setItem('bwwl_profile', JSON.stringify(profile));
+            document.getElementById('onboarding-modal').style.display = 'none';
+            init();
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('day-grid');
+            grid.innerHTML = '';
+
+            for (let i = 1; i <= 30; i++) {
+                if (!state[i]) {
+                    state[i] = { done: false, tasks: new Array(dayContent[i - 1].tasks.length).fill(false) };
+                }
+
+                const card = document.createElement('div');
+                card.className = `day-card ${state[i].done ? 'completed' : ''} ${selectedDay === i ? 'active' : ''}`;
+
+                let icon = state[i].done ? 'fa-check' : (i === 14 ? 'fa-fire' : (i === 30 ? 'fa-trophy' : 'fa-calendar-day'));
+
+                card.innerHTML = `<h3>Day ${i}</h3><i class="fas ${icon}"></i>`;
+                card.onclick = () => selectDay(i);
+                grid.appendChild(card);
+            }
         }
 
         function selectDay(day) {
             selectedDay = day;
-            document.getElementById('current-day-title').innerText = `Tasks for Day ${day}`;
-            document.getElementById('task-list').style.display = 'block';
+            renderGrid(); // update active class
 
-            const list = document.getElementById('task-list');
-            list.innerHTML = '';
+            const panel = document.getElementById('active-day-panel');
+            panel.style.display = 'block';
 
-            tasks.forEach((task, index) => {
-                const isTaskDone = state[day].tasks[index];
-                const taskEl = document.createElement('div');
-                taskEl.className = `task-item ${isTaskDone ? 'done' : ''}`;
-                taskEl.innerHTML = `<div class="check"><i class="fas fa-check"></i></div><span>${task}</span>`;
-                taskEl.onclick = () => toggleTask(day, index);
-                list.appendChild(taskEl);
+            let titleText = `Day ${day} Execution`;
+            if (day === 14) titleText = `⚡ Day 14 Checkpoint`;
+            if (day === 30) titleText = `🏆 The Final Day`;
+            document.getElementById('panel-title').innerHTML = titleText;
+
+            document.getElementById('panel-lesson').innerHTML = dayContent[day - 1].lesson;
+
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';
+
+            dayContent[day - 1].tasks.forEach((taskText, index) => {
+                const isSelected = state[day].tasks[index];
+                const item = document.createElement('div');
+                item.className = `task-item ${isSelected ? 'done' : ''}`;
+                item.innerHTML = `
+                    <div class="check"><i class="fas fa-check"></i></div>
+                    <span style="flex-grow:1;">${taskText}</span>
+                `;
+                item.onclick = () => toggleTask(day, index);
+                taskList.appendChild(item);
             });
 
-            init(); // refresh grid highlight
-            window.scrollTo({ top: document.getElementById('task-list').offsetTop - 50, behavior: 'smooth' });
+            // Smooth scroll to panel if below viewport
+            const rect = panel.getBoundingClientRect();
+            if (rect.top > window.innerHeight || rect.bottom < 0) {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         function toggleTask(day, taskIndex) {
             state[day].tasks[taskIndex] = !state[day].tasks[taskIndex];
 
-            // Check if all tasks done
-            const allDone = state[day].tasks.every(t => t === true);
-            state[day].done = allDone;
+            const allTasksDone = state[day].tasks.every(t => t === true);
+            const wasAlreadyDone = state[day].done;
 
-            localStorage.setItem('bwwl_kickstart', JSON.stringify(state));
-            selectDay(day);
+            state[day].done = allTasksDone;
+            localStorage.setItem('bwwl_kickstart_os', JSON.stringify(state));
+
+            selectDay(day); // Re-render tasks
+            updateProgress();
+
+            if (allTasksDone && !wasAlreadyDone) {
+                // Show celebration modal
+                document.getElementById('celebration-modal').style.display = 'flex';
+
+                // Optional: Auto move to next day after a delay
+                setTimeout(() => {
+                    if (day < 30) selectDay(day + 1);
+                }, 3000);
+            }
         }
 
-        // Initialize
+        function updateProgress() {
+            let completed = 0;
+            for (let i = 1; i <= 30; i++) {
+                if (state[i] && state[i].done) completed++;
+            }
+            const percent = Math.round((completed / 30) * 100);
+            document.getElementById('progress-bar').style.width = percent + '%';
+            document.getElementById('progress-percent').innerText = percent + '%';
+        }
+
         init();
     </script>
 </body>

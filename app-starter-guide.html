@@ -5,197 +5,659 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Starter Guide | BWWL</title>
+    <title>Transformation Starter Guide | BWWL</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        body,
+        html {
             margin: 0;
-            background: #050505;
-            color: #fff;
+            padding: 0;
             font-family: 'Inter', sans-serif;
-            line-height: 1.8;
+            background: #050505;
+            color: #dedede;
+            line-height: 1.7;
+            scroll-behavior: smooth;
         }
 
         .hero {
-            height: 60vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=1200&auto=format&fit=crop');
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(5, 5, 5, 1)), url('https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=1200&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             padding: 2rem;
             border-bottom: 2px solid #520a93;
+            position: relative;
         }
 
         .hero h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin: 0 0 1rem 0;
             text-transform: uppercase;
+            color: #fff;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.1;
+            letter-spacing: 1px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #ccc;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0;
         }
 
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        .reading-progress {
+        /* Progress Bar */
+        .reading-progress-container {
             position: fixed;
             top: 0;
             left: 0;
-            height: 5px;
+            width: 100%;
+            height: 6px;
+            background: #222;
+            z-index: 1000;
+        }
+
+        .reading-progress-bar {
+            height: 100%;
             background: linear-gradient(90deg, #FF007F, #6A0DAD);
             width: 0%;
-            z-index: 1000;
             transition: width 0.1s;
+            border-radius: 0 3px 3px 0;
         }
 
-        h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.2rem;
-            color: #FF007F;
-            margin-top: 3rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-            text-transform: uppercase;
+        /* Layout */
+        .layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .callout {
+        /* Sidebar Index */
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
             background: #111;
-            padding: 1.5rem;
-            border-left: 5px solid #6A0DAD;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-            font-size: 1.1rem;
-            color: #ddd;
+            border-right: 1px solid #222;
+            display: none;
+        }
+
+        @media(min-width: 900px) {
+            .sidebar {
+                display: block;
+            }
+        }
+
+        /* Scrollbar styling for sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+
+        .sidebar h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 0;
+            text-transform: uppercase;
+            border-bottom: 2px solid #520a93;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            padding: 0.6rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #222;
+            transition: 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff;
+            padding-left: 10px;
+            border-left: 3px solid #FF007F;
+            background: rgba(255, 0, 127, 0.05);
+        }
+
+        .nav-link span {
+            color: #FF007F;
+            font-weight: bold;
+            margin-right: 8px;
+            font-family: monospace;
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+            max-width: 800px;
+            padding: 3rem 2rem;
+            margin: 0 auto;
+        }
+
+        .module {
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .module h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .module h2 .mod-num {
+            background: #520a93;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 1.5rem;
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #ccc;
+            margin-bottom: 1.5rem;
         }
 
         ul {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #ccc;
             padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         strong {
             color: #fff;
+            font-weight: 600;
+        }
+
+        .callout {
+            background: #151515;
+            padding: 2rem;
+            border-left: 5px solid #FF007F;
+            border-radius: 0 8px 8px 0;
+            margin: 2.5rem 0;
+            font-size: 1.1rem;
+            color: #ddd;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .callout i {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: #FF007F;
+        }
+
+        .callout-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
         .btn-finish {
             display: block;
             width: 100%;
             text-align: center;
-            background: #FF007F;
+            background: linear-gradient(90deg, #520a93, #FF007F);
             color: #fff;
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 4rem;
+            font-size: 1.3rem;
+            margin-top: 5rem;
             text-decoration: none;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(82, 10, 147, 0.4);
         }
 
         .btn-finish:hover {
-            background: #e0006f;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 0, 127, 0.4);
+        }
+
+        /* Mobile Nav Toggle */
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FF007F;
+            color: #fff;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        @media(max-width: 899px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: #111;
+            z-index: 1500;
+            transition: left 0.3s ease;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+            border-right: 2px solid #FF007F;
+        }
+
+        .mobile-sidebar.open {
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1400;
+            display: none;
+        }
+
+        .overlay.open {
+            display: block;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="reading-progress" id="progressBar"></div>
+    <div class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Mobile Nav UI -->
+    <button class="mobile-nav-toggle" onclick="toggleMobileNav()"><i class="fas fa-list-ul"></i></button>
+    <div class="overlay" id="navOverlay" onclick="toggleMobileNav()"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <!-- Cloned via JS -->
+    </div>
 
     <div class="hero">
         <h1>Transformation Starter Guide</h1>
-        <p>Laying the foundation. Rebuild your relationship with food, discipline, and your mind.</p>
+        <p>The Master Manual. Rebuild your relationship with food, discipline, and your own mind before you touch a
+            single weight.</p>
     </div>
 
-    <div class="content">
+    <div class="layout">
 
-        <div class="callout">
-            <i class="fas fa-brain" style="color:#6A0DAD; font-size:1.5rem; margin-bottom:1rem; display:block;"></i>
-            <strong>Mindset Principle:</strong> You cannot build a beautiful house on a deeply cracked foundation.
-            Before you buy expensive sneakers, supplements, or gym memberships, you must rebuild your relationship with
-            food, discipline, and your own mind.
+        <!-- Desktop Sidebar -->
+        <div class="sidebar" id="desktopSidebar">
+            <h3>Course Curriculum</h3>
+            <!-- Links injected below -->
         </div>
 
-        <h2><i class="fas fa-fire"></i> 1. The Energy Balance (The Only Rule)</h2>
-        <p>There is a lot of misinformation online, but the absolute, unavoidable scientific law of weight loss is the
-            <strong>Caloric Deficit</strong>.</p>
-        <ul>
-            <li><strong>To lose fat:</strong> You must burn more energy (calories) than you consume.</li>
-            <li><strong>To gain fat:</strong> You consume more energy than you burn.</li>
-        </ul>
-        <p>That is it. Keto, Paleo, Vegan, Intermittent Fasting—they are simply <em>different tools</em> that help you
-            achieve that single core principle (a deficit).</p>
+        <!-- Main Content Area -->
+        <div class="content">
 
-        <div class="callout" style="border-color:#FF007F;">
-            <i class="fas fa-bolt" style="color:#FF007F; font-size:1.5rem; margin-bottom:1rem; display:block;"></i>
-            <strong>Important Insight:</strong> You do not need to starve yourself. A massive deficit leads to binge
-            eating. A small, sustainable deficit (eating 300 to 500 calories less than you burn) leads to permanent,
-            steady fat loss without losing your mind.
+            <!-- MODULE 1 -->
+            <div class="module" id="mod-1">
+                <h2><span class="mod-num">01</span> Foundations of Fat Loss</h2>
+                <p>Welcome to the beginning. The fitness industry thrives on confusion. It sells you detox teas, waist
+                    trainers, and complicated workout splits. The reality is that fat loss is biologically simple, even
+                    if it is psychologically difficult.</p>
+                <p>This guide exists to strip away the noise. We are laying a concrete foundation. Before you build the
+                    house (the workouts, the meal prep), you must pour the concrete (your mindset and understanding of
+                    human biology).</p>
+            </div>
+
+            <!-- MODULE 2 -->
+            <div class="module" id="mod-2">
+                <h2><span class="mod-num">02</span> Calories Explained Simply</h2>
+                <p>A calorie is simply a unit of energy. Like petrol in a car.</p>
+                <ul>
+                    <li><strong>To lose fat:</strong> You must burn more energy than you consume (Caloric Deficit).</li>
+                    <li><strong>To gain fat:</strong> You consume more energy than you burn (Caloric Surplus).</li>
+                    <li><strong>To stay the same:</strong> You consume the exact amount of energy you burn
+                        (Maintenance).</li>
+                </ul>
+                <div class="callout">
+                    <i class="fas fa-bolt"></i>
+                    <div class="callout-title">The Absolute Law</div>
+                    <strong>Every diet on earth</strong> (Keto, Paleo, Intermittent Fasting, Vegan) only works for
+                    weight loss if it forces you into a Caloric Deficit. They are simply different tools to achieve the
+                    same biological mechanism. Master the deficit, master your weight.
+                </div>
+            </div>
+
+            <!-- MODULE 3 -->
+            <div class="module" id="mod-3">
+                <h2><span class="mod-num">03</span> Why Crash Diets Fail</h2>
+                <p>If a slight deficit is good, a massive deficit must be great, right? <strong>Wrong.</strong></p>
+                <p>When you starve yourself (eating 1,000 calories a day), your body panics. It believes there is a
+                    famine. It responds by slashing your metabolism, increasing hunger hormones (Ghrelin), and shutting
+                    down non-essential functions (like hair growth and mood regulation). Eventually, willpower breaks,
+                    leading to a massive binge, completely undoing the starved week.</p>
+                <p>We want a <em>slight</em>, sustainable deficit (300-500 calories under maintenance) that you can
+                    maintain for months without losing your mind.</p>
+            </div>
+
+            <!-- MODULE 4 -->
+            <div class="module" id="mod-4">
+                <h2><span class="mod-num">04</span> Daily Habits That Drive Progress</h2>
+                <p>Motivation is a feeling; it is unreliable. Habits are automatic. You brush your teeth every morning
+                    without needing to "feel motivated" to do it. We must turn fat loss into a routine.</p>
+                <ul>
+                    <li><strong>The 16oz Flush:</strong> Drinking a large glass of water immediately upon waking.</li>
+                    <li><strong>The Protein Anchor:</strong> Ensuring every single meal is built around a protein source
+                        first.</li>
+                    <li><strong>The 10k Non-Negotiable:</strong> Hitting 10,000 steps a day, regardless of weather or
+                        mood.</li>
+                </ul>
+            </div>
+
+            <!-- MODULE 5 -->
+            <div class="module" id="mod-5">
+                <h2><span class="mod-num">05</span> Understanding Hunger Signals</h2>
+                <p>Are you hungry, or are you just bored, stressed, or thirsty?</p>
+                <p>True physical hunger builds gradually. You will feel it in your stomach, and an apple will sound
+                    appealing. Emotional hunger hits suddenly. You crave a very specific texture or flavor (sugar/salt),
+                    and an apple sounds terrible.</p>
+                <div class="callout" style="border-color:#520a93;">
+                    <i class="fas fa-apple-alt" style="color:#520a93;"></i>
+                    <div class="callout-title">The Apple Test</div>
+                    If you think you are hungry at 9 PM, ask yourself: "Would I eat a plain, raw apple right now?" If
+                    the answer is no, you are not physically hungry. Drink a glass of water and walk away from the
+                    kitchen.
+                </div>
+            </div>
+
+            <!-- MODULE 6 -->
+            <div class="module" id="mod-6">
+                <h2><span class="mod-num">06</span> Beginner Mindset</h2>
+                <p>You cannot hate yourself into a body you love. The mindset of "I am fat and disgusting, so I must
+                    punish myself with exercise" leads to burnout. Exercise is a celebration of what your body can do,
+                    not a punishment for what you ate.</p>
+            </div>
+
+            <!-- MODULE 7 -->
+            <div class="module" id="mod-7">
+                <h2><span class="mod-num">07</span> Discipline vs. Motivation</h2>
+                <p>Motivation is the spark; Discipline is the engine.</p>
+                <p>You will only feel 'motivated' to go to the gym about 20% of the time. The people getting results are
+                    going the other 80% of the time when they would rather be sleeping. Discipline is doing what you
+                    promised yourself you would do, long after the mood you made the promise in has passed.</p>
+            </div>
+
+            <!-- MODULE 8 -->
+            <div class="module" id="mod-8">
+                <h2><span class="mod-num">08</span> How To Build Routines</h2>
+                <p>Reduce "Decision Fatigue." If you wake up at 6 AM and have to decide <em>what</em> to wear,
+                    <em>whether</em> to work out, and <em>what</em> to eat for breakfast, you will fail by Wednesday.
+                </p>
+                <p><strong>The Fix:</strong> Decide everything the night before. Lay out your gym clothes. Prep your
+                    breakfast. When you wake up, you do not think; you just execute the pre-written script.</p>
+            </div>
+
+            <!-- MODULE 9 -->
+            <div class="module" id="mod-9">
+                <h2><span class="mod-num">09</span> How To Overcome Setbacks</h2>
+                <p>You will mess up. You will eat an entire pizza on a Friday night. <strong>This is normal.</strong>
+                </p>
+                <p>The difference between success and failure is the recovery. If you get a flat tire, you don't slash
+                    the other three tires. If you overeat on Friday night, wake up Saturday morning, drink your water,
+                    and hit your steps. One bad meal does not ruin a week, just like one salad doesn't make you
+                    instantly thin.</p>
+            </div>
+
+            <!-- MODULE 10 -->
+            <div class="module" id="mod-10">
+                <h2><span class="mod-num">10</span> Protein Essentials</h2>
+                <p>Protein is the most important macronutrient for your transformation.</p>
+                <p>1. It has the highest Thermic Effect of Food (TEF) – your body burns 20-30% of the calories in
+                    protein just breaking it down.<br>
+                    2. It prevents muscle loss while you are in a caloric deficit.<br>
+                    3. It keeps you physically full for hours, suppressing cravings.</p>
+            </div>
+
+            <!-- MODULE 11 -->
+            <div class="module" id="mod-11">
+                <h2><span class="mod-num">11</span> Hydration</h2>
+                <p>Your liver metabolizes fat. Your liver requires immense amounts of water to function correctly. If
+                    you are chronically dehydrated, your metabolism literally slows down.</p>
+                <p>Aim for minimum 2.5 Liters (approx. 85 oz) daily. Buy a large refillable bottle. Keep it next to your
+                    keyboard, not in the kitchen.</p>
+            </div>
+
+            <!-- MODULE 12 -->
+            <div class="module" id="mod-12">
+                <h2><span class="mod-num">12</span> Sleep Optimisation</h2>
+                <p>Sleep deprivation spikes Cortisol. High Cortisol causes water retention (blurring your results) and
+                    significantly increases Ghrelin (the hunger hormone). If you sleep 5 hours a night, you are battling
+                    your own biology the next day.</p>
+                <div class="callout">
+                    <i class="fas fa-bed"></i>
+                    <div class="callout-title">Sleep Hygiene</div>
+                    No screens 45 minutes before bed. Blue light destroys melatonin production. Make the room pitch
+                    black and cold (approx. 65°F / 18°C).
+                </div>
+            </div>
+
+            <!-- MODULE 13 -->
+            <div class="module" id="mod-13">
+                <h2><span class="mod-num">13</span> Grocery Shopping Structure</h2>
+                <p>Shop the perimeter of the grocery store. The outside aisles hold the fresh produce, meats, dairy, and
+                    eggs. The inner aisles hold the highly processed, boxed carbohydrates designed in labs to be
+                    hyper-palatable and chemically addictive. If it comes in a colorful box and has a shelf life of 3
+                    years, avoid it.</p>
+            </div>
+
+            <!-- MODULE 14 -->
+            <div class="module" id="mod-14">
+                <h2><span class="mod-num">14</span> Meal Prepping Basics</h2>
+                <p>You do not need to cook 21 gourmet meals on Sunday. Keep it simple:</p>
+                <ul>
+                    <li>Cook 3 days' worth of chicken breast or ground turkey at once.</li>
+                    <li>Cook a massive batch of rice or potatoes.</li>
+                    <li>Buy pre-washed spinach/greens to toss into bowls instantly.</li>
+                </ul>
+                <p>The goal is to assemble meals in 5 minutes on a busy Tuesday, rather than cooking from scratch.</p>
+            </div>
+
+            <!-- MODULE 15 -->
+            <div class="module" id="mod-15">
+                <h2><span class="mod-num">15</span> Fitness Without a Gym</h2>
+                <p>You do not need an hour drive, a $50 membership, and complicated machines to get results.</p>
+                <p>Bodyweight squats, pushups, lunges, planks, and brisk walking are enough to totally transform your
+                    physique over 6-12 months. Your body does not know if you are lifting a steel dumbbell or doing a
+                    heavy pushup on your living room rug; it only understands resistance.</p>
+            </div>
+
+            <!-- MODULE 16 -->
+            <div class="module" id="mod-16">
+                <h2><span class="mod-num">16</span> Habit Stacking</h2>
+                <p>Tie a new habit to an existing, automatic habit.</p>
+                <ul>
+                    <li><em>Instead of:</em> "I need to remember to drink water."</li>
+                    <li><em>Stack it:</em> "Immediately after I brush my teeth (existing), I will drink a glass of water
+                        (new)."</li>
+                </ul>
+            </div>
+
+            <!-- MODULE 17 -->
+            <div class="module" id="mod-17">
+                <h2><span class="mod-num">17</span> Time Management for Consistency</h2>
+                <p>Audit your screen time. If you have 2 hours of social media usage on your phone daily, you have time
+                    to work out and cook. Be honest about where your minutes go. If you prioritize fitness, you will
+                    find exactly 30 minutes in your calendar to execute.</p>
+            </div>
+
+            <!-- MODULE 18 -->
+            <div class="module" id="mod-18">
+                <h2><span class="mod-num">18</span> Your 30-Day Transformation Plan</h2>
+                <p>You have the knowledge. Now, it requires execution. Open your <strong>30-Day Kickstart OS</strong>
+                    and your <strong>Interactive Workout Guide</strong>.</p>
+                <p>Focus on winning today. Just today. Do not look 6 months ahead. Hit your protein, drink your water,
+                    take your steps, and go to bed. String enough of those days together, and you will become
+                    unrecognizable.</p>
+
+                <button class="btn-finish" onclick="completeCourse()"><i class="fas fa-check-circle"></i> Mark Course as
+                    Completed</button>
+            </div>
+
         </div>
+    </div>
 
-        <h2><i class="fas fa-utensils"></i> 2. Re-engineering Your Plate</h2>
-        <p>Instead of intensely weighing your food, use the <strong>Plate Method</strong> for lunch and dinner:</p>
-        <ul>
-            <li><strong>50% Vegetables:</strong> Fill literally half your plate with greens (broccoli, spinach,
-                asparagus, kale). This provides massive volume, keeps you full, and is incredibly low in calories.</li>
-            <li><strong>25% Protein:</strong> Chicken, fish, tofu, eggs, or lean beef. Protein builds muscle and
-                increases satiety (fullness).</li>
-            <li><strong>25% Complex Carbs/Fats:</strong> Sweet potatoes, quinoa, brown rice, avocado, olive oil. These
-                provide sustainable energy.</li>
-        </ul>
-
-        <h2><i class="fas fa-shoe-prints"></i> 3. The Power of NEAT</h2>
-        <p>NEAT is Non-Exercise Activity Thermogenesis—all the calories you burn <em>outside</em> of a structured
-            workout. Walking to the store, taking the stairs, cleaning your house, fidgeting.</p>
-        <p><strong>The Reality:</strong> Your 45-minute gym session only burns about 300 calories. But if you increase
-            your NEAT significantly throughout the entire day, you can burn an extra 500-800 calories easily. Aim for
-            8,000 to 10,000 steps a day.</p>
-
-        <h2><i class="fas fa-bed"></i> 4. The Sleep & Stress Trap</h2>
-        <p>If your diet and workouts are perfect, but your sleep is terrible, you will struggle to lose weight. Lack of
-            sleep spikes Cortisol (stress hormone) and Ghrelin (hunger hormone). If you sleep 5 hours a night, your body
-            physically craves high-calorie sugar the next day to compensate for the rapid energy loss. Commit to 7-8
-            hours.</p>
-
-        <a href="#" class="btn-finish"
-            onclick="alert('Module Completed. You have laid the foundation.'); return false;"><i
-                class="fas fa-check-circle"></i> Mark Module Complete</a>
-
+    <!-- Completion Modal -->
+    <div id="complete-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+        <div
+            style="background:#111; padding:3rem; border-radius:12px; border:2px solid #00FF00; text-align:center; max-width:400px;">
+            <i class="fas fa-graduation-cap" style="font-size:4rem; color:#00FF00; margin-bottom:1rem;"></i>
+            <h2
+                style="font-family:'Oswald', sans-serif; font-size:2rem; margin:0 0 1rem; color:#fff; text-transform:uppercase;">
+                Knowledge Verified</h2>
+            <p style="color:#ccc; font-size:1.1rem; line-height:1.6;">You now understand the science and the psychology.
+                The foundation is set. It is time to execute.</p>
+            <button onclick="document.getElementById('complete-modal').style.display='none'"
+                style="margin-top:2rem; width:100%; padding:1rem; border-radius:30px; background:#00FF00; color:#000; font-weight:bold; cursor:pointer; border:none; font-size:1.1rem;">Close
+                Manual</button>
+        </div>
     </div>
 
     <script>
-        // Update reading progress bar on scroll
+        // Module Data
+        const modules = [
+            "Foundations of Fat Loss", "Calories Explained Simply", "Why Crash Diets Fail",
+            "Daily Habits That Drive Progress", "Understanding Hunger Signals", "Beginner Mindset",
+            "Discipline vs. Motivation", "How To Build Routines", "How To Overcome Setbacks",
+            "Protein Essentials", "Hydration", "Sleep Optimisation", "Grocery Shopping Structure",
+            "Meal Prepping Basics", "Fitness Without a Gym", "Habit Stacking",
+            "Time Management for Consistency", "Your 30-Day Transformation Plan"
+        ];
+
+        // Generate Sidebar Links
+        function buildNav() {
+            let html = '';
+            modules.forEach((title, index) => {
+                const num = (index + 1).toString().padStart(2, '0');
+                html += `<a href="#mod-${index + 1}" class="nav-link" id="link-${index + 1}"><span>${num}</span> ${title}</a>`;
+            });
+
+            document.getElementById('desktopSidebar').innerHTML += html;
+
+            const mobileHtml = `<h3 style="font-family:'Oswald', sans-serif; font-size:1.5rem; color:#fff; border-bottom:2px solid #520a93; padding-bottom:0.5rem;">Course Directory</h3>` + html;
+            document.getElementById('mobileSidebar').innerHTML = mobileHtml;
+        }
+
+        buildNav();
+
+        // Scroll Tracking & Progress Bar
+        const domModules = document.querySelectorAll('.module');
+        const domLinks = document.querySelectorAll('.nav-link');
+
         window.addEventListener('scroll', () => {
+            // Document Progress Bar
             const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrollPosition = document.documentElement.scrollTop;
             const progress = (scrollPosition / documentHeight) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
+
+            // Active Menu Link Detection
+            let currentStr = '';
+            domModules.forEach(mod => {
+                const modTop = mod.offsetTop;
+                if (pageYOffset >= modTop - 200) {
+                    currentStr = mod.getAttribute('id');
+                }
+            });
+
+            if (currentStr !== '') {
+                const currentNum = currentStr.split('-')[1];
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('id') === `link-${currentNum}`) {
+                        link.classList.add('active');
+
+                        // Mobile specific active classes
+                        const modHrefs = document.querySelectorAll(`.nav-link[href="#mod-${currentNum}"]`);
+                        modHrefs.forEach(hl => hl.classList.add('active'));
+                    }
+                });
+            }
         });
+
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            const sidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('navOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        // Close mobile nav on click
+        document.getElementById('mobileSidebar').addEventListener('click', (e) => {
+            if (e.target.tagName.toLowerCase() === 'a') {
+                toggleMobileNav();
+            }
+        });
+
+        // Completion Action
+        function completeCourse() {
+            document.getElementById('complete-modal').style.display = 'flex';
+            // Scroll to top automatically
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 
