@@ -185,7 +185,7 @@
                 <!-- Submission Form -->
                 <div class="featured-form-card shadow-lg">
                     <h3 class="mb-3">Submit Your Story</h3>
-                    <form action="https://formspree.io/f/mnjgdgyb" method="POST" enctype="multipart/form-data">
+                    <form action="https://formspree.io/f/mnjgdgyb" method="POST">
                         <div class="form-group grid-2 gap-2">
                             <input type="text" name="first_name" placeholder="First Name" class="form-input" required>
                             <input type="text" name="ig_handle" placeholder="Instagram Handle (@)" class="form-input">
@@ -193,17 +193,10 @@
                         <div class="form-group">
                             <input type="email" name="email" placeholder="Email Address" class="form-input" required>
                         </div>
-                        <div class="form-group grid-2 gap-2">
-                            <div>
-                                <label>Before Photo</label>
-                                <input type="file" name="before_photo" class="form-input file-input" accept="image/*"
-                                    required>
-                            </div>
-                            <div>
-                                <label>After Photo</label>
-                                <input type="file" name="after_photo" class="form-input file-input" accept="image/*"
-                                    required>
-                            </div>
+                        <div class="form-group p-3 mb-3 border border-pink text-sm" style="background: rgba(236, 72, 153, 0.1); border-color: #EC4899; border-radius: 8px;">
+                            <p class="mb-2"><strong class="text-pink"><i class="fas fa-camera"></i> Photo Instructions:</strong> Please do not upload photos here. We will review your story and contact you via email or Instagram DM to securely collect your high-resolution Before & After photos if you are selected!</p>
+                            <label class="text-xs text-muted">Optional: Link to an existing Instagram post documenting your journey</label>
+                            <input type="url" name="ig_post_link" placeholder="https://instagram.com/p/..." class="form-input mt-1">
                         </div>
                         <div class="form-group">
                             <label>Feature Type</label>
@@ -612,6 +605,24 @@
     </style>
 
     <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const menuIcon = mobileToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        }
+
         // Smooth scroll implementation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -621,6 +632,12 @@
                 const element = document.querySelector(targetRef);
                 if (element) {
                     e.preventDefault();
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const menuIcon = mobileToggle.querySelector('i');
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
                     element.scrollIntoView({
                         behavior: 'smooth'
                     });
