@@ -69,13 +69,13 @@
             <div class="transformation-spotlight mt-4 mb-5">
                 <div class="spotlight-grid">
                     <div class="spotlight-images">
-                        <div class="img-before">
-                            <span class="img-label">BEFORE</span>
-                            <img src="assets/before2.png" alt="Before Transformation" class="responsive-img shadow-lg">
-                        </div>
-                        <div class="img-after">
-                            <span class="img-label bg-pink">AFTER</span>
-                            <img src="assets/after.png" alt="After Transformation" class="responsive-img shadow-lg">
+                        <div class="img-combined" style="position: relative;">
+                            <span class="img-label bg-dark text-white shadow"
+                                style="position: absolute; top: 15px; left: 15px; z-index: 2; border-radius: 4px; padding: 4px 10px; font-weight: bold; font-family: 'Inter', sans-serif;">BEFORE</span>
+                            <span class="img-label bg-pink text-white shadow"
+                                style="position: absolute; top: 15px; right: 15px; z-index: 2; border-radius: 4px; padding: 4px 10px; font-weight: bold; font-family: 'Inter', sans-serif;">AFTER</span>
+                            <img src="assets/faith_new.jpg" alt="Faith Transformation Before and After"
+                                class="responsive-img shadow-lg" style="width: 100%; border-radius: 8px;">
                         </div>
                     </div>
                     <div class="spotlight-content">
@@ -119,24 +119,22 @@
             <div class="grid-2 mt-4">
                 <div class="story-card shadow-lg">
                     <div class="story-img-wrapper"
-                        style="display: flex; height: 350px; overflow: hidden; position: relative;">
-                        <!-- Scaled up and shifted specifically to hide TikTok emojis at the top edge -->
-                        <div
-                            style="flex: 1; background-image: url('assets/before2.png'); background-size: cover; background-position: center 25%; transform: scale(1.35); transform-origin: top center;">
-                        </div>
-                        <div
-                            style="flex: 1; background-image: url('assets/before1.png'); background-size: cover; background-position: center 25%; border-left: 2px solid #FF007F; transform: scale(1.35); transform-origin: top center;">
-                        </div>
+                        style="background-image: url('assets/tiana_new.png'); background-size: cover; background-position: center; height: 350px; position: relative;">
+                        <!-- Inline BEFORE/AFTER Tags -->
+                        <span class="badge bg-dark text-white shadow"
+                            style="position: absolute; top: 15px; left: 15px; z-index: 2; padding: 5px 10px; font-weight: bold;">BEFORE</span>
+                        <span class="badge bg-pink text-white shadow"
+                            style="position: absolute; top: 15px; right: 15px; z-index: 2; padding: 5px 10px; font-weight: bold;">AFTER</span>
 
                         <div class="story-overlay">
                             <a href="javascript:void(0)"
                                 onclick="document.getElementById('modal-tiana').style.display='flex'"
-                                class="btn btn-sm btn-primary">Read Tiana & Ariana's Story</a>
+                                class="btn btn-sm btn-primary">Read Tiana's Story</a>
                         </div>
                     </div>
                     <div class="story-body">
                         <h4>"From 250 to 180lbs"</h4>
-                        <p class="text-muted text-sm mt-1">Losing 70lbs and gaining our lives back by staying
+                        <p class="text-muted text-sm mt-1">Losing 70lbs and gaining my life back by staying
                             consistent.</p>
                     </div>
                 </div>
